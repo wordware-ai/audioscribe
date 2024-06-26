@@ -6,7 +6,7 @@ import NoteDialog from './note-dialog'
 
 const NewNote = () => {
   return (
-    <div className="flex min-h-[200px] w-full max-w-sm flex-col items-center justify-center space-y-4 rounded-lg border bg-gray-100 p-4">
+    <div className="flex min-h-[120px] w-full max-w-sm flex-col items-center justify-center space-y-4 rounded-lg border bg-gray-100 p-4 md:min-h-[200px]">
       <Flow />
     </div>
   )
