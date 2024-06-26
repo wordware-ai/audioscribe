@@ -1,5 +1,6 @@
 import DeveloperInfo from './_audio-recorder/developer-info'
 import NewNote from './_audio-recorder/new-note'
+import Listing from './_note_listing/listing'
 import { instrumentSerif } from './fonts'
 
 export default function Home() {
@@ -27,6 +28,9 @@ export default function Home() {
         <div className="flex-center h-[200px] w-[400px] rounded-xl border-[0.5px] border-white/30 bg-white/10 backdrop-blur-xl">
           <NewNote />
         </div>
+      </section>
+      <section className="flex-center w-full py-12">
+        <Listing />
       </section>
       <svg
         width="0"

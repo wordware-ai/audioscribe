@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.6",
+    "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.0",
     "@vercel/blob": "^0.23.3",
     "ai": "^3.2.8",
     "class-variance-authority": "^0.7.0",
