@@ -61,7 +61,7 @@ const NoteDialog = ({ defaultOpen, title, content, date }: { defaultOpen?: boole
       open={open}
       onOpenChange={(open) => setOpen(open)}>
       <AlertDialogTrigger>Open</AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="max-h-[90svh] w-full max-w-lg overflow-y-auto">
         <AlertDialogHeader>
           <div className="flex-center flex-col gap-2">
             <h2 className={cn(lora.className, 'w-full text-center text-2xl font-bold')}>{title}</h2>
@@ -70,43 +70,6 @@ const NoteDialog = ({ defaultOpen, title, content, date }: { defaultOpen?: boole
           </div>
           <div className="w-full py-4">
             <Markdown content={content || ''} />
-            {/* <MemoizedReactMarkdown
-              className={cn(lora.className, 'pros-sm break-words prose-p:leading-relaxed prose-pre:p-0')}
-              remarkPlugins={[remarkGfm]}
-              components={{
-                h1: ({ node, ...props }) => (
-                  <h1
-                    className="mb-2 text-2xl font-bold last:mb-0"
-                    {...props}
-                  />
-                ),
-                h2: ({ node, ...props }) => (
-                  <h2
-                    className="mb-2 text-xl font-bold last:mb-0"
-                    {...props}
-                  />
-                ),
-                h3: ({ node, ...props }) => (
-                  <h3
-                    className="mb-2 text-lg font-bold last:mb-0"
-                    {...props}
-                  />
-                ),
-                p: ({ node, ...props }) => (
-                  <p
-                    className="mb-2 last:mb-0"
-                    {...props}
-                  />
-                ),
-                strong: ({ node, ...props }) => (
-                  <strong
-                    className="font-bold"
-                    {...props}
-                  />
-                ),
-              }}>
-              {content}
-            </MemoizedReactMarkdown> */}
           </div>
         </AlertDialogHeader>
         <AlertDialogFooter>
