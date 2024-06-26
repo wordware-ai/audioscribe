@@ -22,6 +22,7 @@ const Flow = () => {
     return (
       <NoteDialog
         title={newNote.title}
+        transcript={newNote.transcript}
         content={newNote.content}
         defaultOpen={true}
       />

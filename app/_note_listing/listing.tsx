@@ -36,7 +36,7 @@ const Listing = () => {
 
 export default Listing
 
-const NoteCard = ({ id, title, content, createdAt }: { id: string; title: string; content: string; createdAt: string }) => {
+const NoteCard = ({ id, title, transcript, content, createdAt }: { id: string; title: string; transcript: string; content: string; createdAt: string }) => {
   const [confirmDelete, setConfirmDelete] = useState(false)
   const readableDate = format(new Date(createdAt), 'dd MMM yyyy')
 
@@ -64,6 +64,7 @@ const NoteCard = ({ id, title, content, createdAt }: { id: string; title: string
         <WaveSine width={24} />
         <p className="text-center text-sm">{readableDate}</p>
       </div>
+      <div className={cn(lora.className, 'prose-sm break-words border-b py-2 prose-p:leading-relaxed prose-pre:p-0')}>“{transcript}”</div>
       <div className="w-full py-4">
         <Markdown content={content} />
       </div>

@@ -21,7 +21,19 @@ import remarkGfm from 'remark-gfm'
 import { useNewNote, useNewNoteSteps, useNotes } from '../_hooks/zustand-store'
 import { nanoid } from 'nanoid'
 
-const NoteDialog = ({ defaultOpen, title, content, date }: { defaultOpen?: boolean; title?: string | null; content?: string | null; date?: string | null }) => {
+const NoteDialog = ({
+  defaultOpen,
+  title,
+  transcript,
+  content,
+  date,
+}: {
+  defaultOpen?: boolean
+  title?: string | null
+  transcript?: string | null
+  content?: string | null
+  date?: string | null
+}) => {
   const [open, setOpen] = useState(defaultOpen)
   const { setNewNote } = useNewNote()
   const { setNewNoteSteps } = useNewNoteSteps()
@@ -51,7 +63,10 @@ const NoteDialog = ({ defaultOpen, title, content, date }: { defaultOpen?: boole
   }
 
   const handleSaveNote = () => {
-    setNotes((notes) => [...notes, { title: title || '', content: content || '', id: nanoid(5), createdAt: new Date().toISOString() }])
+    setNotes((notes) => [
+      ...notes,
+      { title: title || '', transcript: transcript || '', content: content || '', id: nanoid(5), createdAt: new Date().toISOString() },
+    ])
     handleDiscardNote()
   }
 
@@ -68,6 +83,7 @@ const NoteDialog = ({ defaultOpen, title, content, date }: { defaultOpen?: boole
             <WaveSine width={24} />
             <p className="text-center text-sm">{readableDate}</p>
           </div>
+          <div className={cn(lora.className, 'prose-sm break-words border-b py-2 prose-p:leading-relaxed prose-pre:p-0')}>“{transcript}”</div>
           <div className="w-full py-4">
             <Markdown content={content || ''} />
           </div>

@@ -3,6 +3,7 @@ import { create } from 'zustand'
 type Note = {
   id: string
   title: string
+  transcript: string
   content: string
   createdAt: string
 }
@@ -21,6 +22,7 @@ type NewNoteSteps = {
 
 export type NewNote = {
   title?: string | null
+  transcript?: string | null
   content?: string | null
 }
 
