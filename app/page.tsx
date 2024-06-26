@@ -13,8 +13,9 @@ export default function Home() {
       </div> */}
       <DeveloperInfo />
       <section className="flex-center flex-grow flex-col gap-12 text-black">
-        <h1 className="max-w-lg text-center text-5xl font-bold">
+        <h1 className="max-w-lg text-center text-4xl font-bold md:text-5xl">
           Clean notes from
+          <br />
           <span
             className={instrumentSerif.className}
             style={{ filter: 'url(#liquify)' }}>

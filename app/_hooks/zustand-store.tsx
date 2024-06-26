@@ -1,5 +1,12 @@
 import { create } from 'zustand'
 
+type Note = {
+  id: string
+  title: string
+  content: string
+  createdAt: string
+}
+
 type NewNoteSteps = {
   recorded: boolean
   uploadStarted: boolean
@@ -23,6 +30,9 @@ type AudioscribeStore = {
 
   newNote: NewNote
   setNewNote: (updater: (newNote: NewNote) => NewNote) => void
+
+  notes: Note[]
+  setNotes: (updater: (notes: Note[]) => Note[]) => void
 }
 
 const useStore = create<AudioscribeStore>((set) => ({
@@ -44,6 +54,9 @@ const useStore = create<AudioscribeStore>((set) => ({
     content: null,
   },
   setNewNote: (updater) => set((state) => ({ newNote: updater(state.newNote) })),
+
+  notes: [],
+  setNotes: (updater) => set((state) => ({ notes: updater(state.notes) })),
 }))
 
 export const useNewNoteSteps = () => {
@@ -56,4 +69,10 @@ export const useNewNote = () => {
   const newNote = useStore((state) => state.newNote)
   const setNewNote = useStore((state) => state.setNewNote)
   return { newNote, setNewNote }
+}
+
+export const useNotes = () => {
+  const notes = useStore((state) => state.notes)
+  const setNotes = useStore((state) => state.setNotes)
+  return { notes, setNotes }
 }
