@@ -6,7 +6,7 @@ import NoteDialog from './note-dialog'
 
 const NewNote = () => {
   return (
-    <div className="flex min-h-[120px] w-full max-w-sm flex-col items-center justify-center space-y-4 rounded-lg border bg-gray-100 p-4 md:min-h-[200px]">
+    <div className="flex min-h-[120px] w-full flex-col items-center justify-center space-y-4 rounded-3xl bg-white/20 p-4 text-white backdrop-blur-sm md:min-h-[200px]">
       <Flow />
     </div>
   )
@@ -35,7 +35,7 @@ const Flow = () => {
 
 const LoadingState = ({ text }: { text: string }) => {
   return (
-    <div className="flex-center w-full flex-col gap-2">
+    <div className="flex-center relative h-full w-full flex-col gap-2">
       <CircleNotch className="h-5 w-5 animate-spin" />
       <p>{text}</p>
     </div>

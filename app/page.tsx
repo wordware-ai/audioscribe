@@ -33,8 +33,19 @@ export default function Home() {
           />
         </h2>
         <p className="max-w-md text-center">Messy mind? Just hit record, spell it all out, and we&apos;ll turn all that into a well structured note.</p>
-        <div className="flex-center w-full rounded-xl border-[0.5px] border-white/30 bg-white/10 backdrop-blur-xl md:w-[400px]">
+        <div className="flex-center w-full rounded-3xl border-[0.5px] border-white/30 backdrop-blur-xl md:w-[400px]">
           <NewNote />
+          <div className="absolute bottom-0 left-0 right-0 top-0 -z-10 overflow-hidden rounded-3xl">
+            <video
+              autoPlay
+              muted
+              loop>
+              <source
+                src="/aur.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
         </div>
       </section>
       <section className="flex-center w-full flex-col gap-6 py-6">
