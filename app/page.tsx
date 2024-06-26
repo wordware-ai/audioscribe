@@ -6,6 +6,9 @@ import { ArrowDown } from '@phosphor-icons/react/dist/ssr'
 import WordwareLogo from '@/public/wordwarelogo.svg'
 import Image from 'next/image'
 
+export const maxDuration = 180
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
