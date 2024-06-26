@@ -16,7 +16,7 @@ import { lora } from '../fonts'
 import { format } from 'date-fns/format'
 import { Button } from '@/components/ui/button'
 import { WaveSine } from '@phosphor-icons/react/WaveSine'
-import { MemoizedReactMarkdown } from '@/components/markdown'
+import { Markdown, MemoizedReactMarkdown } from '@/components/markdown'
 import remarkGfm from 'remark-gfm'
 import { useNewNote, useNewNoteSteps, useNotes } from '../_hooks/zustand-store'
 import { nanoid } from 'nanoid'
@@ -69,7 +69,8 @@ const NoteDialog = ({ defaultOpen, title, content, date }: { defaultOpen?: boole
             <p className="text-center text-sm">{readableDate}</p>
           </div>
           <div className="w-full py-4">
-            <MemoizedReactMarkdown
+            <Markdown content={content || ''} />
+            {/* <MemoizedReactMarkdown
               className={cn(lora.className, 'pros-sm break-words prose-p:leading-relaxed prose-pre:p-0')}
               remarkPlugins={[remarkGfm]}
               components={{
@@ -105,7 +106,7 @@ const NoteDialog = ({ defaultOpen, title, content, date }: { defaultOpen?: boole
                 ),
               }}>
               {content}
-            </MemoizedReactMarkdown>
+            </MemoizedReactMarkdown> */}
           </div>
         </AlertDialogHeader>
         <AlertDialogFooter>
