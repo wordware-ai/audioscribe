@@ -1,19 +1,19 @@
 'use client'
 
-import { useState } from 'react'
 import RecordButton from './record-button'
 import AudioWaveform from './audio-waveform'
 import AudioPlayer from './audio-player'
 import ErrorAlert from './error-alert'
 import useAudioRecorder from '../hooks/use-recorder'
+import { useNewNoteSteps } from '@/app/_hooks/zustand-store'
 
-const VoiceRecorder = ({ audioBlobURL, setAudioBlobURL }: { audioBlobURL: string | null; setAudioBlobURL: (url: string) => void }) => {
-  const [error, setError] = useState<string | null>(null)
-  const { isRecording, audioData, startRecording, stopRecording } = useAudioRecorder(setAudioBlobURL, setError)
+const VoiceRecorder = () => {
+  const { newNoteSteps } = useNewNoteSteps()
+  const { isRecording, audioData, startRecording, stopRecording } = useAudioRecorder()
 
   return (
     <div className="flex space-x-2">
-      {!audioBlobURL && (
+      {!newNoteSteps.recorded && (
         <RecordButton
           isRecording={isRecording}
           onStartRecording={startRecording}
@@ -21,9 +21,9 @@ const VoiceRecorder = ({ audioBlobURL, setAudioBlobURL }: { audioBlobURL: string
         />
       )}
 
-      <ErrorAlert error={error} />
+      <ErrorAlert error={newNoteSteps.error} />
 
-      <AudioPlayer audioBlobURL={audioBlobURL} />
+      <AudioPlayer audioBlobURL={newNoteSteps.uploadedURL} />
 
       {isRecording && <AudioWaveform audioData={audioData} />}
     </div>

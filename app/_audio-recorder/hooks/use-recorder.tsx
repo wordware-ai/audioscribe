@@ -1,6 +1,10 @@
+import { transcribe } from '@/app/_actions/actions'
+import { NewNote, useNewNote, useNewNoteSteps } from '@/app/_hooks/zustand-store'
+import { parsePartialJson } from '@/lib/parse-partial-json'
 import { useState, useRef, useCallback } from 'react'
 
-const useAudioRecorder = (setAudioBlobURL: (url: string) => void, setError: (error: string) => void) => {
+// const useAudioRecorder = (setAudioBlobURL: (url: string) => void, setError: (error: string) => void) => {
+const useAudioRecorder = () => {
   const [isRecording, setIsRecording] = useState<boolean>(false)
   const [audioData, setAudioData] = useState<number[]>([])
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
@@ -9,6 +13,8 @@ const useAudioRecorder = (setAudioBlobURL: (url: string) => void, setError: (err
   const analyserRef = useRef<AnalyserNode | null>(null)
   const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null)
   const animationRef = useRef<number | null>(null)
+  const { setNewNoteSteps } = useNewNoteSteps()
+  const { setNewNote } = useNewNote()
 
   const startRecording = useCallback(async () => {
     try {
@@ -39,9 +45,21 @@ const useAudioRecorder = (setAudioBlobURL: (url: string) => void, setError: (err
       }
       mediaRecorderRef.current.onstop = async () => {
         const blob = new Blob(chunksRef.current, { type: 'audio/webm' })
+        setNewNoteSteps((state) => ({ ...state, recorded: true }))
+        setNewNoteSteps((state) => ({ ...state, uploadStarted: true }))
         const url = await uploadBlob(blob)
         if (url) {
-          setAudioBlobURL(url)
+          // setAudioBlobURL(url)
+          setNewNoteSteps((state) => ({ ...state, uploadedURL: url }))
+          setNewNoteSteps((state) => ({ ...state, transcriptStarted: true }))
+          const transcript = await transcribeAudio({ audioPublicURL: url })
+          if (!transcript) {
+            setNewNoteSteps((state) => ({ ...state, error: 'Error transcribing audio. Please try again.' }))
+          } else {
+            const newNote = await analyseVoicenote({ transcript })
+            console.log('🟣 | file: use-recorder.tsx:58 | mediaRecorderRef.current.onstop= | newNote:', newNote)
+            // setNewNote(newNote)
+          }
         }
         chunksRef.current = []
         if (animationRef.current) {
@@ -51,10 +69,10 @@ const useAudioRecorder = (setAudioBlobURL: (url: string) => void, setError: (err
       mediaRecorderRef.current.start()
       setIsRecording(true)
     } catch (err) {
-      setError('Error accessing microphone. Please check permissions.')
-      console.error('Error starting recording:', err)
+      setNewNoteSteps((state) => ({ ...state, error: 'Error accessing microphone. Please check permissions.' }))
+      console.error('🔴 | Error starting recording:', err)
     }
-  }, [setAudioBlobURL, setError])
+  }, [setNewNoteSteps])
 
   const stopRecording = useCallback(() => {
     if (mediaRecorderRef.current && isRecording) {
@@ -79,8 +97,60 @@ const useAudioRecorder = (setAudioBlobURL: (url: string) => void, setError: (err
       })
       return (await response.json()) as string
     } catch (err) {
-      setError('Error uploading recording. Please try again.')
+      setNewNoteSteps((state) => ({ ...state, error: 'Error uploading recording. Please try again.' }))
       console.error('Error uploading recording:', err)
+    }
+  }
+
+  const transcribeAudio = async ({ audioPublicURL }: { audioPublicURL: string }) => {
+    if (!audioPublicURL) return null
+    const { success, text, error } = await transcribe({ publicURL: audioPublicURL })
+    if (success) {
+      setNewNoteSteps((state) => ({ ...state, transcript: text }))
+      console.log('🟢 | transcribeAudioText:', text)
+      return text
+    } else {
+      console.error('🔴 | transcribeAudioError', error)
+    }
+  }
+
+  const analyseVoicenote = async ({ transcript }: { transcript: string }) => {
+    setNewNoteSteps((state) => ({ ...state, wordwareStarted: true }))
+    const response = await fetch('/api/wordware', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ transcript }),
+    })
+
+    if (!response.body) {
+      console.error('No response body')
+      return
+    }
+
+    const reader = response.body.getReader()
+    const decoder = new TextDecoder()
+    let result = ''
+
+    setNewNoteSteps((state) => ({ ...state, streamingStarted: true }))
+
+    try {
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+
+        result += decoder.decode(value, { stream: true })
+
+        const parsed = parsePartialJson(result)
+        setNewNote(() => parsed as NewNote)
+      }
+    } catch (error) {
+      console.error('Error reading stream', error)
+    } finally {
+      reader.releaseLock()
+      setNewNoteSteps((state) => ({ ...state, streamingFinished: true }))
+      return parsePartialJson(result) as NewNote
     }
   }
 

@@ -1,3 +1,4 @@
+import DeveloperInfo from './_audio-recorder/developer-info'
 import NewNote from './_audio-recorder/new-note'
 import { instrumentSerif } from './fonts'
 
@@ -10,7 +11,7 @@ export default function Home() {
           <source src="/aurora.mp4" type="video/mp4" />
         </video>
       </div> */}
-
+      <DeveloperInfo />
       <section className="flex-center flex-grow flex-col gap-12 text-black">
         <h1 className="max-w-lg text-center text-5xl font-bold">
           Clean notes from
