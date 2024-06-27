@@ -33,7 +33,7 @@ export default function Home() {
           />
         </h2>
         <p className="max-w-md text-center">Messy mind? Just hit record, spell it all out, and we&apos;ll turn all that into a well structured note.</p>
-        <div className="flex-center w-full rounded-3xl border-[0.5px] border-white/30 backdrop-blur-xl md:w-[400px]">
+        <div className="flex-center relative w-full max-w-[400px] rounded-3xl border-[0.5px] border-white/30 backdrop-blur-xl md:w-[400px]">
           <NewNote />
           <div className="absolute bottom-0 left-0 right-0 top-0 -z-10 overflow-hidden rounded-3xl">
             <video

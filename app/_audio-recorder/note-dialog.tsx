@@ -1,25 +1,13 @@
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { cn } from '@/lib/utils'
-import { useMemo, useState } from 'react'
-import { lora } from '../fonts'
-import { format } from 'date-fns/format'
+import { Markdown } from '@/components/markdown'
+import { AlertDialog, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { WaveSine } from '@phosphor-icons/react/WaveSine'
-import { Markdown, MemoizedReactMarkdown } from '@/components/markdown'
-import remarkGfm from 'remark-gfm'
-import { useNewNote, useNewNoteSteps, useNotes } from '../_hooks/zustand-store'
+import { format } from 'date-fns/format'
 import { nanoid } from 'nanoid'
+import { useMemo, useState } from 'react'
+import { useNewNote, useNewNoteSteps, useNotes } from '../_hooks/zustand-store'
+import { lora } from '../fonts'
 
 const NoteDialog = ({
   defaultOpen,
