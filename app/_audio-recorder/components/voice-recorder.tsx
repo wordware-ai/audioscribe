@@ -6,10 +6,11 @@ import AudioPlayer from './audio-player'
 import ErrorAlert from './error-alert'
 import useAudioRecorder from '../hooks/use-recorder'
 import { useNewNoteSteps } from '@/app/_hooks/zustand-store'
+import RecordingControls from './recording-controls'
 
 const VoiceRecorder = () => {
   const { newNoteSteps } = useNewNoteSteps()
-  const { isRecording, audioData, startRecording, stopRecording } = useAudioRecorder()
+  const { isRecording, audioData, startRecording, stopRecording, recordingTime, resetRecording } = useAudioRecorder()
 
   return (
     <div className="flex space-x-2">
@@ -25,7 +26,15 @@ const VoiceRecorder = () => {
 
       <AudioPlayer audioBlobURL={newNoteSteps.uploadedURL} />
 
-      {isRecording && <AudioWaveform audioData={audioData} />}
+      <div className="flex-center flex-col gap-2">
+        {isRecording && (
+          <RecordingControls
+            recordingTime={recordingTime}
+            onResetRecording={resetRecording}
+          />
+        )}
+        {isRecording && <AudioWaveform audioData={audioData} />}
+      </div>
     </div>
   )
 }

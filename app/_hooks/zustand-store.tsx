@@ -64,13 +64,33 @@ const useStore = create<AudioscribeStore>((set) => ({
 export const useNewNoteSteps = () => {
   const newNoteSteps = useStore((state) => state.newNoteSteps)
   const setNewNoteSteps = useStore((state) => state.setNewNoteSteps)
-  return { newNoteSteps, setNewNoteSteps }
+  const resetNewNoteSteps = () => {
+    setNewNoteSteps(() => ({
+      recorded: false,
+      uploadStarted: false,
+      uploadedURL: null,
+      transcriptStarted: false,
+      transcript: null,
+      wordwareStarted: false,
+      streamingStarted: false,
+      streamingFinished: false,
+      error: null,
+    }))
+  }
+  return { newNoteSteps, setNewNoteSteps, resetNewNoteSteps }
 }
 
 export const useNewNote = () => {
   const newNote = useStore((state) => state.newNote)
   const setNewNote = useStore((state) => state.setNewNote)
-  return { newNote, setNewNote }
+  const resetNewNote = () => {
+    setNewNote(() => ({
+      title: null,
+      transcript: null,
+      content: null,
+    }))
+  }
+  return { newNote, setNewNote, resetNewNote }
 }
 
 export const useNotes = () => {
