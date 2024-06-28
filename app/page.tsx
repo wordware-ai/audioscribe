@@ -1,10 +1,10 @@
-import DeveloperInfo from './_audio-recorder/developer-info'
-import NewNote from './_audio-recorder/new-note'
-import Listing from './_note_listing/listing'
-import { instrumentSerif } from './fonts'
-import { ArrowDown } from '@phosphor-icons/react/dist/ssr'
 import WordwareLogo from '@/public/wordwarelogo.svg'
 import Image from 'next/image'
+import DeveloperInfo from './_audio-recorder/developer-info'
+import NewNote from './_audio-recorder/new-note'
+import Listing from './_components/listing'
+import { instrumentSerif } from './fonts'
+import SeenOn from './_components/seen-on'
 
 export const maxDuration = 180
 export const dynamic = 'force-dynamic'
@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <DeveloperInfo />
-      <section className="flex-center min-h-[80svh] flex-grow flex-col gap-6 px-4 py-12 text-black md:gap-12 md:px-0">
+      <section className="flex-center min-h-[70svh] flex-grow flex-col gap-6 px-4 pb-6 pt-12 text-black md:gap-12 md:px-0">
         <h1 className="max-w-lg text-center text-4xl font-bold md:text-5xl">
           Clean notes from
           <br />
@@ -26,11 +26,15 @@ export default function Home() {
         </h1>
         <h2 className="flex-center gap-4">
           Built with{' '}
-          <Image
-            src={WordwareLogo}
-            alt="Wordware Logo"
-            height={20}
-          />
+          <a
+            href="https://wordware.ai/"
+            target="_blank">
+            <Image
+              src={WordwareLogo}
+              alt="Wordware Logo"
+              height={20}
+            />
+          </a>
         </h2>
         <p className="max-w-md text-center">Messy mind? Just hit record, spell it all out, and we&apos;ll turn all that into a well structured note.</p>
         <div className="flex-center relative w-full max-w-[400px] rounded-3xl border-[0.5px] border-white/30 backdrop-blur-xl md:w-[400px]">
@@ -48,6 +52,9 @@ export default function Home() {
             </video>
           </div>
         </div>
+      </section>
+      <section className="pb-12">
+        <SeenOn />
       </section>
       <section className="flex-center w-full flex-col gap-6 py-6">
         <Listing />

@@ -1,19 +1,23 @@
 'use client'
-import React from 'react'
+import { Markdown } from '@/components/markdown'
 import { cn } from '@/lib/utils'
-import { useMemo, useState } from 'react'
-import { lora } from '../fonts'
-import { format } from 'date-fns/format'
-import { Button } from '@/components/ui/button'
-import { WaveSine } from '@phosphor-icons/react/WaveSine'
-import { Markdown, MemoizedReactMarkdown } from '@/components/markdown'
-import remarkGfm from 'remark-gfm'
-import { useNewNote, useNewNoteSteps, useNotes } from '../_hooks/zustand-store'
-import { nanoid } from 'nanoid'
 import { ArrowDown, QuestionMark, X } from '@phosphor-icons/react'
+import { WaveSine } from '@phosphor-icons/react/WaveSine'
+import { format } from 'date-fns/format'
+import { useState } from 'react'
+import { useNotes } from '../_hooks/zustand-store'
+import { lora } from '../fonts'
+import Masonry from 'react-masonry-css'
 
 const Listing = () => {
   const { notes } = useNotes()
+
+  const breakpointColumnsObj = {
+    default: Math.min(notes.length, 3),
+    1100: Math.min(notes.length, 2),
+    700: 1,
+  }
+
   return (
     <div className="flex-center w-full flex-col gap-6">
       {notes && notes.length > 0 && (
@@ -22,14 +26,29 @@ const Listing = () => {
           <ArrowDown size={26} />
         </div>
       )}
-      <div className="flex-center flex-rows w-full flex-wrap gap-8">
+      {/* <div className="flex-center flex-rows w-full flex-wrap gap-8">
         {notes.map((note) => (
           <NoteCard
             {...note}
             key={note.id}
           />
         ))}
-      </div>
+      </div> */}
+
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="-ml-8 flex w-auto px-4"
+        columnClassName="pl-8 bg-clip-padding">
+        {notes
+          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          .map((note) => (
+            <div
+              className="mb-8"
+              key={note.id}>
+              <NoteCard {...note} />
+            </div>
+          ))}
+      </Masonry>
     </div>
   )
 }
