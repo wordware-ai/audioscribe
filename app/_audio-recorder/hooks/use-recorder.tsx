@@ -101,7 +101,7 @@ const useAudioRecorder = () => {
     // STEP 1: Upload blob to Vercel
     const url = await uploadBlob(blob)
     if (!url) {
-      setNewNoteSteps((state) => ({ ...state, error: 'Error uploading the Blobl' }))
+      setNewNoteSteps((state) => ({ ...state, error: 'Error uploading the Blob' }))
       return
     }
 
@@ -229,9 +229,9 @@ const useAudioRecorder = () => {
   useEffect(() => {
     if (isRecording && autoStopTimer === null) {
       const timerId = window.setTimeout(() => {
-        console.log('Auto-stopping recording after 5 seconds')
+        console.log('Auto-stopping recording after 2:02')
         stopRecording(true)
-      }, 5000)
+      }, 122000)
       setAutoStopTimer(timerId)
     }
     return () => {

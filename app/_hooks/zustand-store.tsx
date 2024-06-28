@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 type Note = {
   id: string
@@ -37,29 +38,38 @@ type AudioscribeStore = {
   setNotes: (updater: (notes: Note[]) => Note[]) => void
 }
 
-const useStore = create<AudioscribeStore>((set) => ({
-  newNoteSteps: {
-    recorded: false,
-    uploadStarted: false,
-    uploadedURL: null,
-    transcriptStarted: false,
-    transcript: null,
-    wordwareStarted: false,
-    streamingStarted: false,
-    streamingFinished: false,
-    error: null,
-  },
-  setNewNoteSteps: (updater) => set((state) => ({ newNoteSteps: updater(state.newNoteSteps) })),
+const useStore = create<AudioscribeStore>()(
+  persist(
+    (set) => ({
+      newNoteSteps: {
+        recorded: false,
+        uploadStarted: false,
+        uploadedURL: null,
+        transcriptStarted: false,
+        transcript: null,
+        wordwareStarted: false,
+        streamingStarted: false,
+        streamingFinished: false,
+        error: null,
+      },
+      setNewNoteSteps: (updater) => set((state) => ({ newNoteSteps: updater(state.newNoteSteps) })),
 
-  newNote: {
-    title: null,
-    content: null,
-  },
-  setNewNote: (updater) => set((state) => ({ newNote: updater(state.newNote) })),
+      newNote: {
+        title: null,
+        content: null,
+      },
+      setNewNote: (updater) => set((state) => ({ newNote: updater(state.newNote) })),
 
-  notes: [],
-  setNotes: (updater) => set((state) => ({ notes: updater(state.notes) })),
-}))
+      notes: [],
+      setNotes: (updater) => set((state) => ({ notes: updater(state.notes) })),
+    }),
+    {
+      name: 'audioscribe-storage',
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ notes: state.notes }),
+    },
+  ),
+)
 
 export const useNewNoteSteps = () => {
   const newNoteSteps = useStore((state) => state.newNoteSteps)
