@@ -67,7 +67,7 @@ export default function Home() {
       <section className="pb-12">
         <SeenOn />
       </section>
-      <section className="flex-center w-full flex-col gap-6 py-6">
+      <section>
         <Listing />
       </section>
       <section className="pb-12">

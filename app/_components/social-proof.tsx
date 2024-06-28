@@ -7,17 +7,17 @@ import { cn } from '@/lib/utils'
 
 const quotes = [
   {
-    quote: 'I forgot how to type after using this app for a week. I might never type anything anymore',
+    quote: 'forgot how to type after using this app for a week. might never type anything anymore',
     author: 'Filip Kozera',
     image: filip,
   },
   {
-    quote: 'my girlfriend says I talk more to my phone than to her',
+    quote: 'my girlfriend says I talk more to the phone than to her',
     author: 'Kamil Ruczyński',
     image: kamil,
   },
   {
-    quote: 'People look at me weird when I talk to my phone in the elevator, but I just cannot stop myself',
+    quote: 'people look at me weird when I talk to my phone in the elevator, but I just cannot stop myself',
     author: 'Robert Chandler',
     image: robert,
   },

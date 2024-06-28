@@ -19,7 +19,7 @@ const Listing = () => {
   }
 
   return (
-    <div className="flex-center w-full flex-col gap-6">
+    <div className={cn('flex-center w-full flex-col gap-6', notes && notes.length > 0 && 'pt-6')}>
       {notes && notes.length > 0 && (
         <div className="flex-center flex-col gap-2">
           <h2 className="text-center text-2xl font-bold">Your notes</h2>
