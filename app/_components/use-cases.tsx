@@ -62,7 +62,7 @@ const UseCases = () => {
             className="bg-white">
             <CardContent className="flex h-full flex-col items-start p-4">
               <div className="mb-2 flex items-center">
-                <span className="mr-4">
+                <span className="mr-2">
                   <useCase.icon />
                 </span>
                 <h3 className={cn('font-semibold', lora.className)}>{useCase.title}</h3>
