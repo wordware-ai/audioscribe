@@ -54,7 +54,7 @@ const useCases = [
 const UseCases = () => {
   return (
     <div className="container mx-auto space-y-4 px-4">
-      <h2 className="text-center text-2xl font-bold">Your notes</h2>
+      <h2 className="text-center text-2xl font-bold">Best for</h2>
       <div className="grid w-full max-w-4xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {useCases.map((useCase, index) => (
           <Card
