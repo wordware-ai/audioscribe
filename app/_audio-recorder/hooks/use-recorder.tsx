@@ -3,7 +3,6 @@ import { NewNote, useNewNote, useNewNoteSteps } from '@/app/_hooks/zustand-store
 import { parsePartialJson } from '@/lib/parse-partial-json'
 import { useState, useRef, useCallback, useEffect } from 'react'
 
-// const useAudioRecorder = (setAudioBlobURL: (url: string) => void, setError: (error: string) => void) => {
 const useAudioRecorder = () => {
   const [isRecording, setIsRecording] = useState<boolean>(false)
   const [recordingTime, setRecordingTime] = useState(0)
@@ -15,6 +14,7 @@ const useAudioRecorder = () => {
   const analyserRef = useRef<AnalyserNode | null>(null)
   const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null)
   const animationRef = useRef<number | null>(null)
+  const [autoStopTimer, setAutoStopTimer] = useState<number | null>(null)
   const { setNewNoteSteps, resetNewNoteSteps } = useNewNoteSteps()
   const { setNewNote, resetNewNote } = useNewNote()
 
@@ -94,20 +94,28 @@ const useAudioRecorder = () => {
   }
 
   const processRecording = useCallback(async () => {
-    console.log('🟣 | processRecording')
+    // This is the controller that handles all the logic behind creating a new note.
+    console.log('🟣 processRecording')
     const blob = new Blob(chunksRef.current, { type: 'audio/webm' })
     setNewNoteSteps((state) => ({ ...state, recorded: true, uploadStarted: true }))
+    // STEP 1: Upload blob to Vercel
     const url = await uploadBlob(blob)
-    if (url) {
-      setNewNoteSteps((state) => ({ ...state, uploadedURL: url, transcriptStarted: true }))
-      const transcript = await transcribeAudio({ audioPublicURL: url })
-      if (!transcript) {
-        setNewNoteSteps((state) => ({ ...state, error: 'Error transcribing audio. Please try again.' }))
-      } else {
-        const newNote = await analyseVoicenote({ transcript })
-        console.log('🟣 | processRecording | newNote:', newNote)
-      }
+    if (!url) {
+      setNewNoteSteps((state) => ({ ...state, error: 'Error uploading the Blobl' }))
+      return
     }
+
+    // STEP 2: Transcribe the blob using Replicate
+    setNewNoteSteps((state) => ({ ...state, uploadedURL: url, transcriptStarted: true }))
+    const transcript = await transcribeAudio({ audioPublicURL: url })
+    if (!transcript) {
+      setNewNoteSteps((state) => ({ ...state, error: 'Error transcribing audio. Please try again.' }))
+      return
+    }
+
+    //Step 3: Analyse the transcript
+    const newNote = await analyseVoicenote({ transcript })
+    console.log('🟣 | processRecording | newNote:', newNote)
     chunksRef.current = []
   }, [setNewNoteSteps])
 
@@ -173,13 +181,20 @@ const useAudioRecorder = () => {
 
   const startRecording = useCallback(async () => {
     try {
+      // Request access to the users' mic
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      // Create a recorder to record the stream
       mediaRecorderRef.current = new MediaRecorder(stream)
       audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)()
       analyserRef.current = audioContextRef.current.createAnalyser()
+      // Create a MediaStreamAudioSourceNode to connect the audio stream to the AudioContext
       sourceRef.current = audioContextRef.current.createMediaStreamSource(stream)
+      // Connect the source to the analyser to analyze the audio data
       sourceRef.current.connect(analyserRef.current)
 
+      // Setting the Fast Fourier Transform (FFT) size for the analyser to 256,
+      // which divides the signal into frequency bins for analysis,
+      // allowing us to visualize the audio frequency spectrum
       analyserRef.current.fftSize = 256
       const bufferLength = analyserRef.current.frequencyBinCount
       const dataArray = new Uint8Array(bufferLength)
@@ -198,26 +213,33 @@ const useAudioRecorder = () => {
           chunksRef.current.push(event.data)
         }
       }
-      // mediaRecorderRef.current.onstop = processRecording
+      mediaRecorderRef.current.onstop = processRecording
       mediaRecorderRef.current.start()
       setIsRecording(true)
       setRecordingTime(0)
       recordingTimerRef.current = setInterval(() => {
-        setRecordingTime((prevTime) => {
-          console.log('🟣 | recordingTimerRef.current', prevTime)
-          if (prevTime >= 5) {
-            console.log('stop recording:')
-            stopRecording(true)
-            return prevTime
-          }
-          return prevTime + 1
-        })
+        setRecordingTime((prevTime) => prevTime + 1)
       }, 1000)
     } catch (err) {
       setNewNoteSteps((state) => ({ ...state, error: 'Error accessing microphone. Please check permissions.' }))
       console.error('🔴 | Error starting recording:', err)
     }
   }, [setNewNoteSteps, stopRecording])
+
+  useEffect(() => {
+    if (isRecording && autoStopTimer === null) {
+      const timerId = window.setTimeout(() => {
+        console.log('Auto-stopping recording after 5 seconds')
+        stopRecording(true)
+      }, 5000)
+      setAutoStopTimer(timerId)
+    }
+    return () => {
+      if (autoStopTimer !== null) {
+        clearTimeout(autoStopTimer)
+      }
+    }
+  }, [isRecording, stopRecording])
 
   return { isRecording, audioData, startRecording, stopRecording, recordingTime, resetRecording }
 }
