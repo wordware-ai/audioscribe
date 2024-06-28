@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <DeveloperInfo />
-      <DotPattern className={cn('[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]')} />
+      <DotPattern className={cn('-z-50 [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]')} />
       <section className="flex-center min-h-[70svh] flex-grow flex-col gap-6 px-4 pb-6 pt-12 text-black md:gap-12 md:px-0">
         <h1 className="max-w-lg text-center text-4xl font-bold md:text-5xl">
           Clean notes from
