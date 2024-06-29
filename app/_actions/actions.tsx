@@ -2,7 +2,7 @@
 import Replicate from 'replicate'
 const replicate = new Replicate()
 
-type Output = {
+type IncrediblyFastWhisperOutput = {
   text: string
   chunks: {
     timestamp: [number, number]
@@ -19,11 +19,51 @@ export const transcribe = async ({ publicURL }: { publicURL: string }) => {
         task: 'transcribe',
         timestamp: 'chunk',
       },
-    })) as Output
+    })) as IncrediblyFastWhisperOutput
 
     const text = output.text
 
     return { success: true, text: text }
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, text: null, error: error.message }
+    }
+    return { success: false, text: null, error: 'Unknown error' }
+  }
+}
+
+type OpenAIWhisperOutput = {
+  id: number
+  end: number
+  seek: number
+  text: string
+  start: number
+  tokens: number[]
+  avg_logprob: number
+  temperature: number
+  no_speech_prob: number
+  compression_ratio: number
+}
+
+export const transcribeWhisper = async ({ publicURL }: { publicURL: string }) => {
+  try {
+    const output = (await replicate.run('openai/whisper:4d50797290df275329f202e48c76360b3f22b08d28c196cbc54600319435f8d2', {
+      input: {
+        audio: publicURL,
+        model: 'large-v3',
+        translate: false,
+        temperature: 0,
+        transcription: 'plain text',
+        suppress_tokens: '-1',
+        logprob_threshold: -1,
+        no_speech_threshold: 0.6,
+        condition_on_previous_text: true,
+        compression_ratio_threshold: 2.4,
+        temperature_increment_on_fallback: 0.2,
+      },
+    })) as OpenAIWhisperOutput
+
+    return { success: true, text: output.text }
   } catch (error) {
     if (error instanceof Error) {
       return { success: false, text: null, error: error.message }
