@@ -43,7 +43,7 @@ const SocialProof = () => {
             index === 0 && 'sm:[transform:perspective(500px)_rotateY(14deg)]',
             index === quotes.length - 1 && 'sm:[transform:perspective(500px)_rotateY(-14deg)]',
           )}>
-          <p className="mb-4 text-lg font-medium">&quot;{testimonial.quote}&quot;</p>
+          <p className="mb-4 text-lg">&quot;{testimonial.quote}&quot;</p>
           <div className="flex items-center">
             <Image
               src={testimonial.image}

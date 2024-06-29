@@ -88,7 +88,7 @@ const Callout = () => {
 
         <div className="absolute bottom-0 left-0 right-0 top-0 -z-10 bg-black/10 backdrop-blur-sm" />
         <Image
-          quality={80}
+          quality={60}
           placeholder="blur"
           className="absolute -z-20"
           fill
