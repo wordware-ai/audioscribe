@@ -42,7 +42,7 @@ const DeveloperInfo = () => {
                 // content:
                 //   '**• Project Description:** Improve and enhance the existing app\n\n**• Task List:**\n\n1. Redesign note display\n   - Implement a grid layout for notes\n   - Align each column to the top\n\n2. Enhance recording feature\n   - Add a "Discard" button\n   - Add a "Retry" button\n\n3. Improve waveform design\n   - Make waveform more reactive to user\'s voice\n   - Change color scheme to fit overall webpage design\n\n4. Consider adding note editing functionality\n   - *Note: May not be necessary for MVP*\n   - *Note: Would require built-in form, potentially complicating the app*\n\n5. Update app styling\n   - Implement blue or green gradients\n\n6. Implement local storage\n   - Ensure notes are not lost on page refresh\n\n7. Conduct mobile compatibility testing\n\n8. Explore AI-generated unique colors or images for notes\n   - *Note: Optional feature for adding a unique touch to the app*',
                 content:
-                  '  - Ensure notes are not lost on page refresh\n\n7. Conduct mobile compatibility testing\n\n8. Explore AI-generated unique colors or images for notes\n   - *Note: Optional feature for adding a unique touch to the app*',
+                  '1. Conduct mobile compatibility testing\n\n2. Explore AI-generated unique colors or images for notes\n   - *Note: Optional feature for adding a unique touch to the app*',
               }))
             }}>
             Set Dummy data

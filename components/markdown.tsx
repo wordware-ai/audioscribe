@@ -16,22 +16,24 @@ export const Markdown: FC<{ content: string }> = ({ content }) => {
       components={{
         ul: ({ node, ...props }) => (
           <ul
-            className="mb-2 list-inside list-disc last:mb-0"
-            {...props}
-          />
-        ),
-        li: ({ node, ...props }) => (
-          <li
-            className="mb-2 last:mb-0"
+            className="mb-1 list-disc last:mb-0"
             {...props}
           />
         ),
         ol: ({ node, ...props }) => (
           <ol
-            className="mb-2 list-inside list-decimal last:mb-0"
+            className="mb-1 list-decimal last:mb-0"
             {...props}
           />
         ),
+        li: ({ node, children, ...props }) => (
+          <li
+            className="mb-1 last:mb-0"
+            {...props}>
+            {children}
+          </li>
+        ),
+
         h1: ({ node, ...props }) => (
           <h1
             className="mb-2 mt-1 text-xl font-bold last:mb-0"

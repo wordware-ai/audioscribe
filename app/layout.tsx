@@ -1,9 +1,9 @@
 import { TailwindIndicator } from '@/components/ui/tailwind-indicator'
+import { getURL } from '@/lib/config'
+import { Toaster } from 'sonner'
 import { poppins } from './fonts'
 import './globals.css'
 import siteMetadata from './metadata'
-import { getURL } from '@/lib/config'
-import { Toaster, toast } from 'sonner'
 
 export const metadata = {
   metadataBase: new URL(getURL()),
