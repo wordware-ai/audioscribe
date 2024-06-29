@@ -22,19 +22,23 @@ const VoiceRecorder = () => {
         />
       )}
 
-      <ErrorAlert error={newNoteSteps.error} />
+      {newNoteSteps.error ? (
+        <ErrorAlert error={newNoteSteps.error} />
+      ) : (
+        <>
+          <AudioPlayer audioBlobURL={newNoteSteps.uploadedURL} />
 
-      <AudioPlayer audioBlobURL={newNoteSteps.uploadedURL} />
-
-      <div className="flex-center flex-col gap-2">
-        {isRecording && (
-          <RecordingControls
-            recordingTime={recordingTime}
-            onResetRecording={resetRecording}
-          />
-        )}
-        {isRecording && <AudioWaveform audioData={audioData} />}
-      </div>
+          <div className="flex-center flex-col gap-2">
+            {isRecording && (
+              <RecordingControls
+                recordingTime={recordingTime}
+                onResetRecording={resetRecording}
+              />
+            )}
+            {isRecording && <AudioWaveform audioData={audioData} />}
+          </div>
+        </>
+      )}
     </div>
   )
 }

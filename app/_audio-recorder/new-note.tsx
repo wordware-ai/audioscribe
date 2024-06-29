@@ -18,6 +18,7 @@ const Flow = () => {
   const { newNoteSteps } = useNewNoteSteps()
   const { newNote } = useNewNote()
 
+  if (newNoteSteps.error) return <VoiceRecorder />
   if (newNoteSteps.streamingStarted)
     return (
       <NoteDialog

@@ -33,16 +33,7 @@ export const transcribe = async ({ publicURL }: { publicURL: string }) => {
 }
 
 type OpenAIWhisperOutput = {
-  id: number
-  end: number
-  seek: number
-  text: string
-  start: number
-  tokens: number[]
-  avg_logprob: number
-  temperature: number
-  no_speech_prob: number
-  compression_ratio: number
+  transcription: string
 }
 
 export const transcribeWhisper = async ({ publicURL }: { publicURL: string }) => {
@@ -62,9 +53,11 @@ export const transcribeWhisper = async ({ publicURL }: { publicURL: string }) =>
         temperature_increment_on_fallback: 0.2,
       },
     })) as OpenAIWhisperOutput
+    console.log('🟣 | file: actions.tsx:65 | transcribeWhisper | output:', output)
 
-    return { success: true, text: output.text }
+    return { success: true, text: output.transcription }
   } catch (error) {
+    console.log('🟣 | file: actions.tsx:68 | transcribeWhisper | error:', error)
     if (error instanceof Error) {
       return { success: false, text: null, error: error.message }
     }
