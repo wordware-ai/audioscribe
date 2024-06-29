@@ -10,16 +10,22 @@ const quotes = [
     quote: 'forgot how to type after using this app for a week. might never type anything anymore',
     author: 'Filip Kozera',
     image: filip,
+    handle: '@kozerafilip',
+    url: 'https://x.com/kozerafilip',
   },
   {
     quote: 'my girlfriend says I talk more to the phone than to her',
-    author: 'Kamil Ruczyński',
+    author: 'Kamil Ruczynski',
     image: kamil,
+    handle: '@unable0_',
+    url: 'https://x.com/unable0_',
   },
   {
     quote: 'people look at me weird when I talk to my phone in the elevator, but I just cannot stop myself',
     author: 'Robert Chandler',
     image: robert,
+    handle: '@bertie_ai',
+    url: 'https://x.com/bertie_ai',
   },
 ]
 
@@ -37,7 +43,7 @@ const SocialProof = () => {
             index === 0 && 'sm:[transform:perspective(500px)_rotateY(14deg)]',
             index === quotes.length - 1 && 'sm:[transform:perspective(500px)_rotateY(-14deg)]',
           )}>
-          <p className="mb-4 text-lg font-bold">&quot;{testimonial.quote}&quot;</p>
+          <p className="mb-4 text-lg font-medium">&quot;{testimonial.quote}&quot;</p>
           <div className="flex items-center">
             <Image
               src={testimonial.image}
@@ -46,7 +52,18 @@ const SocialProof = () => {
               height={40}
               className="mr-3 rounded-full"
             />
-            <p className="text-sm font-semibold">{testimonial.author}</p>
+            <div>
+              <p className="text-sm font-semibold">{testimonial.author}</p>
+              <p className="text-gray-6000 text-sm font-thin">
+                <a
+                  href={testimonial.url}
+                  target="_blank"
+                  className="transition-all duration-150 hover:underline"
+                  rel="noreferrer">
+                  {testimonial.handle}
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       ))}
