@@ -53,8 +53,8 @@ const SocialProof = () => {
               className="mr-3 rounded-full"
             />
             <div>
-              <p className="text-sm font-semibold">{testimonial.author}</p>
-              <p className="text-gray-6000 text-sm font-thin">
+              <p className="text-sm font-medium">{testimonial.author}</p>
+              <p className="text-gray-6000 text-sm font-light">
                 <a
                   href={testimonial.url}
                   target="_blank"

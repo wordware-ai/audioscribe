@@ -1,4 +1,4 @@
-import { transcribe } from '@/app/_actions/actions'
+import { transcribeWhisper } from '@/app/_actions/actions'
 import { NewNote, useNewNote, useNewNoteSteps } from '@/app/_hooks/zustand-store'
 import { parsePartialJson } from '@/lib/parse-partial-json'
 import { useState, useRef, useCallback, useEffect } from 'react'
@@ -43,7 +43,7 @@ const useAudioRecorder = () => {
 
   const transcribeAudio = async ({ audioPublicURL }: { audioPublicURL: string }) => {
     if (!audioPublicURL) return null
-    const { success, text, error } = await transcribe({ publicURL: audioPublicURL })
+    const { success, text, error } = await transcribeWhisper({ publicURL: audioPublicURL })
     if (success) {
       setNewNoteSteps((state) => ({ ...state, transcript: text }))
       console.log('🟢 | transcribeAudioText:', text)

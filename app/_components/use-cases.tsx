@@ -67,7 +67,7 @@ const UseCases = () => {
                 </span>
                 <h3 className={cn('font-semibold', lora.className)}>{useCase.title}</h3>
               </div>
-              <p className="text-xs text-gray-600 text-muted-foreground">{useCase.description}</p>
+              <p className="p-4 text-xs text-muted-foreground">{useCase.description}</p>
             </CardContent>
           </Card>
         ))}

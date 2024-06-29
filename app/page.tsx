@@ -1,16 +1,16 @@
+import DotPattern from '@/components/ui/dot-pattern'
+import { cn } from '@/lib/utils'
 import WordwareLogo from '@/public/wordwarelogo.svg'
 import Image from 'next/image'
 import DeveloperInfo from './_audio-recorder/developer-info'
 import NewNote from './_audio-recorder/new-note'
-import Listing from './_components/listing'
-import { instrumentSerif } from './fonts'
-import SeenOn from './_components/seen-on'
-import { NeonGradientCard } from '@/components/ui/neon-gradient-card'
-import UseCases from './_components/use-cases'
-import SocialProof from './_components/social-proof'
-import DotPattern from '@/components/ui/dot-pattern'
-import { cn } from '@/lib/utils'
+import Callout from './_components/callout'
 import Footer from './_components/footer'
+import Listing from './_components/listing'
+import SeenOn from './_components/seen-on'
+import SocialProof from './_components/social-proof'
+import UseCases from './_components/use-cases'
+import { instrumentSerif } from './fonts'
 
 export const maxDuration = 180
 export const dynamic = 'force-dynamic'
@@ -75,6 +75,9 @@ export default function Home() {
       </section>
       <section className="pb-12">
         <UseCases />
+      </section>
+      <section className="w-full pb-12">
+        <Callout />
       </section>
       <Footer />
       <svg
