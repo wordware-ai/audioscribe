@@ -3,6 +3,7 @@ import { poppins } from './fonts'
 import './globals.css'
 import siteMetadata from './metadata'
 import { getURL } from '@/lib/config'
+import { Toaster, toast } from 'sonner'
 
 export const metadata = {
   metadataBase: new URL(getURL()),
@@ -46,6 +47,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <Toaster
+          richColors
+          position="top-right"
+        />
         {children}
         <TailwindIndicator />
       </body>
