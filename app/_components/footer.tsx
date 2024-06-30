@@ -16,7 +16,7 @@ const Footer = () => {
             variant={'ghost'}
             asChild>
             <a
-              href="https://discord.gg/6Zm5FGC2kR"
+              href="mailto:hello@wordware.ai"
               target="_blank"
               className="flex-center gap-2 text-white">
               <Envelope size={18} />
