@@ -11,6 +11,7 @@ import SocialProof from './_components/social-proof'
 import UseCases from './_components/use-cases'
 import { instrumentSerif } from './fonts'
 import WordwareLogo from '@/components/ui/logo'
+import { NewsletterForm } from '@/components/ui/newsletter-form'
 
 export const maxDuration = 180
 export const dynamic = 'force-dynamic'
@@ -80,8 +81,11 @@ export default function Home() {
       <section className="pb-12">
         <UseCases />
       </section>
-      <section className="w-full pb-12">
+      <section className="w-full">
         <Callout />
+      </section>
+      <section className="pb-24">
+        <NewsletterForm />
       </section>
       <Footer />
       <svg

@@ -1,10 +1,6 @@
-import Image from 'next/image'
-import aurorabg from '@/public/aurora_bg_blue.jpeg'
 import { Button } from '@/components/ui/button'
-import { DiscordLogo, LinkedinLogo, TwitterLogo } from '@phosphor-icons/react/dist/ssr'
 import DotPattern from '@/components/ui/dot-pattern'
 import { cn } from '@/lib/utils'
-import WordwareLogo from '@/components/ui/logo'
 
 const Callout = () => {
   return (

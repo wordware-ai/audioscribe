@@ -64,3 +64,26 @@ export const transcribeWhisper = async ({ publicURL }: { publicURL: string }) =>
     return { success: false, text: null, error: 'Unknown error' }
   }
 }
+
+export const createLoopsContact = async ({ email }: { email: string }) => {
+  const options = {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${process.env.LOOPS_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: email,
+      source: 'audioscribe',
+      subscribed: true,
+    }),
+  }
+  console.log('🟣 | file: route.ts:56 | POST | options:', options)
+
+  try {
+    const response = await fetch('https://app.loops.so/api/v1/contacts/create', options)
+    const data = await response.json()
+    console.log('🟣 | file: actions.tsx:77 | createLoopsContact | data:', data)
+    return { success: true }
+  } catch (error) {
+    console.log('🟣 | file: actions.tsx:77 | createLoopsContact | error:', error)
+    return { success: false, error: error }
+  }
+}
