@@ -4,6 +4,7 @@ import { Toaster } from 'sonner'
 import { poppins } from './fonts'
 import './globals.css'
 import siteMetadata from './metadata'
+import Providers from '@/lib/providers'
 
 export const metadata = {
   metadataBase: new URL(getURL()),
@@ -47,12 +48,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Toaster
-          richColors
-          position="top-right"
-        />
-        {children}
-        <TailwindIndicator />
+        <Providers>
+          <Toaster
+            richColors
+            position="top-right"
+          />
+          {children}
+          <TailwindIndicator />
+        </Providers>
       </body>
     </html>
   )
