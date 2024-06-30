@@ -1,7 +1,6 @@
 import DotPattern from '@/components/ui/dot-pattern'
 import { cn } from '@/lib/utils'
-import WordwareLogo from '@/public/wordwarelogo.svg'
-import Image from 'next/image'
+
 import DeveloperInfo from './_audio-recorder/developer-info'
 import NewNote from './_audio-recorder/new-note'
 import Callout from './_components/callout'
@@ -11,6 +10,7 @@ import SeenOn from './_components/seen-on'
 import SocialProof from './_components/social-proof'
 import UseCases from './_components/use-cases'
 import { instrumentSerif } from './fonts'
+import WordwareLogo from '@/components/ui/logo'
 
 export const maxDuration = 180
 export const dynamic = 'force-dynamic'
@@ -36,11 +36,15 @@ export default function Home() {
           <a
             href="https://wordware.ai/"
             target="_blank">
-            <Image
+            <WordwareLogo
+              color="black"
+              width={134}
+            />
+            {/* <Image
               src={WordwareLogo}
               alt="Wordware Logo"
               height={20}
-            />
+            /> */}
           </a>
         </h2>
         <p className="max-w-md text-center">Messy mind? Just hit record, spell it all out, and we&apos;ll turn all that into a well structured note.</p>

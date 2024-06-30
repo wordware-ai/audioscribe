@@ -23,6 +23,7 @@
     "lucide-react": "^0.396.0",
     "nanoid": "^5.0.7",
     "next": "14.2.4",
+    "posthog-js": "^1.142.1",
     "react": "^18",
     "react-audio-voice-recorder": "^2.2.0",
     "react-dom": "^18",
