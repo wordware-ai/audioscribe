@@ -6,7 +6,7 @@ const Callout = () => {
   return (
     <div className="flex-center relative w-full flex-col gap-12 p-4 sm:p-12 md:p-24">
       <h2 className="mb-4 w-full text-center text-2xl text-stone-500 md:text-4xl lg:text-5xl xl:text-6xl">
-        This is <span className="text-black">WordApp</span> - Wordware application
+        This is a<span className="text-black">WordApp</span> - Wordware application
       </h2>
 
       <div className="max-w-8xl relative flex w-full flex-col items-start gap-6 overflow-hidden rounded-3xl bg-black bg-gradient-to-r p-10 font-light text-white md:flex-row lg:p-16">
