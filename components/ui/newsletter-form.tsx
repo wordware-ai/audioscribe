@@ -43,7 +43,6 @@ export function NewsletterForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel>Email</FormLabel> */}
                 <FormControl>
                   <div className="flex-center gap-2">
                     <Input
@@ -60,7 +59,6 @@ export function NewsletterForm() {
                     </Button>
                   </div>
                 </FormControl>
-                {/* <FormDescription>This is your public display name.</FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}

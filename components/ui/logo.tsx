@@ -1,6 +1,4 @@
-import React from 'react'
-
-const WordwareLogo = ({ emblemOnly = false, color, width }: { emblemOnly?: boolean; color: 'white' | 'black'; width: number }) => {
+const WordwareLogo = ({ color, width }: { color: 'white' | 'black'; width: number }) => {
   return (
     <svg
       width={width}

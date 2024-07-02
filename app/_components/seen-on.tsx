@@ -1,4 +1,3 @@
-// import techcrunch from '@/public/logos/techcrunch.png'
 import x from '@/public/logos/x.png'
 import ycombinator from '@/public/logos/ycombinator.png'
 import medium from '@/public/logos/medium.png'

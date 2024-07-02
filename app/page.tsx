@@ -1,7 +1,6 @@
 import DotPattern from '@/components/ui/dot-pattern'
 import { cn } from '@/lib/utils'
-
-import DeveloperInfo from './_audio-recorder/developer-info'
+import DeveloperInfo from './_components/developer-info'
 import NewNote from './_audio-recorder/new-note'
 import Callout from './_components/callout'
 import Footer from './_components/footer'
@@ -41,16 +40,10 @@ export default function Home() {
               color="black"
               width={134}
             />
-            {/* <Image
-              src={WordwareLogo}
-              alt="Wordware Logo"
-              height={20}
-            /> */}
           </a>
         </h2>
         <p className="max-w-md text-center">Messy mind? Just hit record, spell it all out, and we&apos;ll turn all that into a well structured note.</p>
         <div className="flex-center relative w-full max-w-[400px] rounded-3xl border-[0.5px] border-white/30 backdrop-blur-xl md:w-[400px]">
-          {/* <NeonGradientCard borderSize={0}> */}
           <div className="z-20 w-full">
             <NewNote />
           </div>
@@ -66,7 +59,6 @@ export default function Home() {
               />
             </video>
           </div>
-          {/* </NeonGradientCard> */}
         </div>
       </section>
       <section className="pb-12">

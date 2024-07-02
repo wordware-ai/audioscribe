@@ -9,7 +9,8 @@ const DeveloperInfo = () => {
   const [open, setOpen] = useState(false)
   const { newNoteSteps, setNewNoteSteps } = useNewNoteSteps()
   const { newNote, setNewNote } = useNewNote()
-  const { notes, setNotes } = useNotes()
+  const { notes } = useNotes()
+  if (process.env.NODE_ENV === 'production') return null
   return (
     <div className="absolute left-2 top-2 max-w-sm whitespace-pre-wrap text-xs">
       <div className="flex items-center gap-2">

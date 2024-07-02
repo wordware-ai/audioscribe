@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import WordwareLogo from '@/components/ui/logo'
-import { DiscordLogo, Envelope, LinkedinLogo, TwitterLogo, XLogo } from '@phosphor-icons/react/dist/ssr'
+import { DiscordLogo, Envelope, LinkedinLogo, XLogo } from '@phosphor-icons/react/dist/ssr'
 import React from 'react'
 
 const Footer = () => {

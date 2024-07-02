@@ -39,7 +39,6 @@ export async function POST(request: Request) {
           for (let i = 0, len = chunk.length; i < len; ++i) {
             const isChunkSeparator = chunk[i] === '\n'
 
-            // Keep buffering unless we've hit the end of a data chunk
             if (!isChunkSeparator) {
               buffer.push(chunk[i])
               continue
