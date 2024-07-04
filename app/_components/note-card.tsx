@@ -31,7 +31,8 @@ const NoteCard = ({ id, title, transcript, content, createdAt }: { id: string; t
   }
 
   return (
-    <div className="group relative min-h-[80px] w-full max-w-sm rounded-lg border-blue-500 bg-blue-50 bg-gradient-to-r from-blue-50 via-purple-50 to-blue-50 p-6">
+    // Alternatively, we can use gradient for the background: bg-gradient-to-r from-blue-50 via-purple-50 to-blue-50
+    <div className="group relative min-h-[80px] w-full max-w-sm rounded-lg border-[0.5px] border-blue-500 bg-blue-50 p-6">
       <div className="absolute -right-2 -top-2 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
         <button
           className="flex-center h-6 w-6 rounded-full border border-red-500 bg-white font-bold text-red-500 shadow-sm"
