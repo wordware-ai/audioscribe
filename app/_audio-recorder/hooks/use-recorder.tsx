@@ -44,9 +44,12 @@ const useAudioRecorder = () => {
   const transcribeAudio = async ({ audioPublicURL }: { audioPublicURL: string }) => {
     if (!audioPublicURL) return null
     const { success, text, error } = await transcribeWhisper({ publicURL: audioPublicURL })
+    console.log('🟣 | file: use-recorder.tsx:47 | transcribeAudio | success:', success)
     if (success) {
-      setNewNoteSteps((state) => ({ ...state, transcript: text }))
+      console.log('🟣 | file: use-recorder.tsx:49 | transcribeAudio | success:', success)
       console.log('🟢 | transcribeAudioText:', text)
+      setNewNoteSteps((state) => ({ ...state, transcript: text }))
+
       return text
     } else {
       console.error('🔴 | transcribeAudioError', error)
@@ -54,6 +57,7 @@ const useAudioRecorder = () => {
   }
 
   const analyseVoicenote = async ({ transcript }: { transcript: string }) => {
+    console.log('🟣 | file: use-recorder.tsx:114 | processRecording | transcript:', transcript)
     setNewNoteSteps((state) => ({ ...state, wordwareStarted: true }))
     const response = await fetch('/api/wordware', {
       method: 'POST',
@@ -108,6 +112,7 @@ const useAudioRecorder = () => {
     // STEP 2: Transcribe the blob using Replicate
     setNewNoteSteps((state) => ({ ...state, uploadedURL: url, transcriptStarted: true }))
     const transcript = await transcribeAudio({ audioPublicURL: url })
+    console.log('🟣 | file: use-recorder.tsx:114 | processRecording | transcript:', transcript)
     if (!transcript) {
       setNewNoteSteps((state) => ({ ...state, error: 'Error transcribing audio. Please try again.' }))
       return

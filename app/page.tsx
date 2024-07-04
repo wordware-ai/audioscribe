@@ -11,6 +11,7 @@ import UseCases from './_components/use-cases'
 import { instrumentSerif } from './fonts'
 import WordwareLogo from '@/components/ui/logo'
 import { NewsletterForm } from '@/components/ui/newsletter-form'
+import { Button } from '@/components/ui/button'
 
 export const maxDuration = 180
 export const dynamic = 'force-dynamic'
@@ -31,17 +32,36 @@ export default function Home() {
             scrambled thoughts.
           </span>
         </h1>
-        <h2 className="flex-center gap-4">
-          Built with{' '}
-          <a
-            href="https://wordware.ai/"
-            target="_blank">
-            <WordwareLogo
-              color="black"
-              width={134}
-            />
-          </a>
-        </h2>
+        <div className="flex-center flex-col gap-2">
+          <h2 className="flex-center gap-4">
+            Built with{' '}
+            <a
+              href="https://wordware.ai/"
+              target="_blank">
+              <WordwareLogo
+                color="black"
+                width={134}
+              />
+            </a>
+          </h2>
+          <Button
+            size={'sm'}
+            variant={'outline'}
+            asChild>
+            <a
+              href="https://app.wordware.ai/r/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db"
+              target="_blank"
+              className="flex-center gap-2">
+              <WordwareLogo
+                emblemOnly
+                color={'black'}
+                width={12}
+              />
+              Duplicate Agent
+            </a>
+          </Button>
+        </div>
+
         <p className="max-w-md text-center">Messy mind? Just hit record, spell it all out, and we&apos;ll turn all that into a well structured note.</p>
         <div className="flex-center relative w-full max-w-[400px] rounded-3xl border-[0.5px] border-white/30 backdrop-blur-xl md:w-[400px]">
           <div className="z-20 w-full">

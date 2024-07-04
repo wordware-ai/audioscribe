@@ -1,4 +1,21 @@
-const WordwareLogo = ({ color, width }: { color: 'white' | 'black'; width: number }) => {
+const WordwareLogo = ({ emblemOnly = false, color, width }: { emblemOnly?: boolean; color: 'white' | 'black'; width: number }) => {
+  if (emblemOnly) {
+    return (
+      <svg
+        width={width}
+        height={width}
+        viewBox="0 0 59 44"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M13 0H0V44H13V43.1128L13.1923 43.3051L29.2584 27.239L45.3245 43.3051L45.5168 43.1128V44H58.5168V0H45.5168V25.1127L38.1924 17.7882L29.2584 26.7222L20.3245 17.7882L13 25.1127V0Z"
+          fill={color}
+        />
+      </svg>
+    )
+  }
   return (
     <svg
       width={width}
@@ -7,8 +24,8 @@ const WordwareLogo = ({ color, width }: { color: 'white' | 'black'; width: numbe
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M13 0H0V44H13V43.1128L13.1923 43.3051L29.2584 27.239L45.3245 43.3051L45.5168 43.1128V44H58.5168V0H45.5168V25.1127L38.1924 17.7882L29.2584 26.7222L20.3245 17.7882L13 25.1127V0Z"
         fill={color}
       />

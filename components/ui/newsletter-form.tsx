@@ -32,8 +32,8 @@ export function NewsletterForm() {
 
   return (
     <div className="flex-center container mx-auto flex-col space-y-4 px-4">
-      <h2 className="text-center text-2xl font-bold">Sign up for the newsletter</h2>
-      <p>If you’d like to get notified about our upcoming project or exploring different WordApps, leave your email here.</p>
+      <h2 className="text-center text-2xl font-light">Sign up for the newsletter</h2>
+      <p className="font-light">If you’d like to get notified about our upcoming project or exploring different WordApps, leave your email here.</p>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

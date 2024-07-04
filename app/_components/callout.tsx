@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button'
 import DotPattern from '@/components/ui/dot-pattern'
+import WordwareLogo from '@/components/ui/logo'
 import { cn } from '@/lib/utils'
+import { GithubLogo } from '@phosphor-icons/react/dist/ssr'
 
 const Callout = () => {
   return (
@@ -47,8 +49,14 @@ const Callout = () => {
           asChild>
           <a
             href="https://app.wordware.ai/r/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db"
-            target="_blank">
-            Duplicate this app
+            target="_blank"
+            className="flex-center gap-2">
+            <WordwareLogo
+              emblemOnly
+              color={'white'}
+              width={12}
+            />
+            Duplicate Agent
           </a>
         </Button>
         {/* https://app.wordware.ai/r/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db */}
@@ -58,8 +66,10 @@ const Callout = () => {
           asChild>
           <a
             href="https://github.com/ky-zo/wordware-audioscribe"
-            target="_blank">
-            GitHub repo
+            target="_blank"
+            className="flex-center gap-2">
+            <GithubLogo />
+            GitHub Repo
           </a>
         </Button>
       </div>
