@@ -1,6 +1,5 @@
 export async function POST(request: Request) {
   const { transcript } = await request.json()
-  console.log('🟣 | file: route.ts:3 | POST | transcript:', transcript)
 
   const runResponse = await fetch('https://app.wordware.ai/api/prompt/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db/run', {
     method: 'POST',

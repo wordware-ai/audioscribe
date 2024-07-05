@@ -55,11 +55,9 @@ export const transcribeWhisper = async ({ publicURL }: { publicURL: string }) =>
         temperature_increment_on_fallback: 0.2,
       },
     })) as OpenAIWhisperOutput
-    console.log('🟣 | file: actions.tsx:65 | transcribeWhisper | output:', output)
 
     return { success: true, text: output.transcription }
   } catch (error) {
-    console.log('🟣 | file: actions.tsx:68 | transcribeWhisper | error:', error)
     if (error instanceof Error) {
       return { success: false, text: null, error: error.message }
     }
@@ -77,15 +75,13 @@ export const createLoopsContact = async ({ email }: { email: string }) => {
       subscribed: true,
     }),
   }
-  console.log('🟣 | file: route.ts:56 | POST | options:', options)
 
   try {
     const response = await fetch('https://app.loops.so/api/v1/contacts/create', options)
     const data = await response.json()
-    console.log('🟣 | file: actions.tsx:77 | createLoopsContact | data:', data)
+
     return { success: true }
   } catch (error) {
-    console.log('🟣 | file: actions.tsx:77 | createLoopsContact | error:', error)
     return { success: false, error: error }
   }
 }

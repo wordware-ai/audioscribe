@@ -45,10 +45,8 @@ const useAudioRecorder = () => {
   const transcribeAudio = async ({ audioPublicURL }: { audioPublicURL: string }) => {
     if (!audioPublicURL) return null
     const { success, text, error } = await transcribeWhisper({ publicURL: audioPublicURL })
-    console.log('🟣 | file: use-recorder.tsx:47 | transcribeAudio | success:', success)
+
     if (success) {
-      console.log('🟣 | file: use-recorder.tsx:49 | transcribeAudio | success:', success)
-      console.log('🟢 | transcribeAudioText:', text)
       setNewNoteSteps((state) => ({ ...state, transcript: text }))
 
       return text
@@ -58,7 +56,6 @@ const useAudioRecorder = () => {
   }
 
   const analyseVoicenote = async ({ transcript }: { transcript: string }) => {
-    console.log('🟣 | file: use-recorder.tsx:114 | processRecording | transcript:', transcript)
     setNewNoteSteps((state) => ({ ...state, wordwareStarted: true }))
     const response = await fetch('/api/wordware', {
       method: 'POST',
@@ -100,7 +97,7 @@ const useAudioRecorder = () => {
 
   const processRecording = useCallback(async () => {
     // This is the controller that handles all the logic behind creating a new note.
-    console.log('🟣 processRecording')
+
     const blob = new Blob(chunksRef.current, { type: 'audio/webm' })
     setNewNoteSteps((state) => ({ ...state, recorded: true, uploadStarted: true }))
     // STEP 1: Upload blob to Vercel
@@ -113,7 +110,7 @@ const useAudioRecorder = () => {
     // STEP 2: Transcribe the blob using Replicate
     setNewNoteSteps((state) => ({ ...state, uploadedURL: url, transcriptStarted: true }))
     const transcript = await transcribeAudio({ audioPublicURL: url })
-    console.log('🟣 | file: use-recorder.tsx:114 | processRecording | transcript:', transcript)
+
     if (!transcript) {
       setNewNoteSteps((state) => ({ ...state, error: 'Error transcribing audio. Please try again.' }))
       return
@@ -121,25 +118,20 @@ const useAudioRecorder = () => {
 
     //Step 3: Analyse the transcript
     const newNote = await analyseVoicenote({ transcript })
-    console.log('🟣 | processRecording | newNote:', newNote)
+
     chunksRef.current = []
   }, [setNewNoteSteps])
 
   const stopRecording = useCallback(
     (shouldProcess: boolean = true) => {
-      console.log('🟣 | stopRecording')
-      console.log('shouldProcess', shouldProcess)
       if (mediaRecorderRef.current && isRecording) {
         if (!shouldProcess) {
-          console.log('null shouldProcess')
           mediaRecorderRef.current.onstop = null
         } else {
-          console.log('processRecording shouldProcess')
           mediaRecorderRef.current.onstop = processRecording
         }
         mediaRecorderRef.current.stop()
         if (shouldProcess) {
-          console.log('processRecording shouldProcess')
         }
         if (sourceRef.current) {
           sourceRef.current.disconnect()
@@ -235,7 +227,6 @@ const useAudioRecorder = () => {
   useEffect(() => {
     if (isRecording && autoStopTimer === null) {
       const timerId = window.setTimeout(() => {
-        console.log('Auto-stopping recording after 2:02')
         stopRecording(true)
       }, 122000)
       setAutoStopTimer(timerId)
