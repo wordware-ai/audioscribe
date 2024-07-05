@@ -74,7 +74,7 @@
 }
 
 .test-pink {
-  @apply border-2  border-pink-500;
+  @apply border-2 border-pink-500;
 }
 
 .test-orange {

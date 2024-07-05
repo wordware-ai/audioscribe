@@ -1,6 +1,7 @@
+import { Mic, Square } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { Mic, Square } from 'lucide-react'
 
 const RecordButton = ({
   isRecording,

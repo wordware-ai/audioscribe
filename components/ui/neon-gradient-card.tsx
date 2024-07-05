@@ -1,7 +1,8 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import { CSSProperties, ReactElement, ReactNode, useEffect, useRef, useState } from 'react'
+
+import { cn } from '@/lib/utils'
 
 interface NeonColorsProps {
   firstColor: string

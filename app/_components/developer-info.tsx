@@ -1,9 +1,11 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { useNewNote, useNewNoteSteps, useNotes } from '../_hooks/zustand-store'
-import { Switch } from '@/components/ui/switch'
 import { useState } from 'react'
+
+import { Button } from '@/components/ui/button'
+import { Switch } from '@/components/ui/switch'
+
+import { useNewNote, useNewNoteSteps, useNotes } from '../_hooks/zustand-store'
 
 const DeveloperInfo = () => {
   const [open, setOpen] = useState(false)

@@ -1,7 +1,9 @@
 'use client'
+
+import { CircleNotch } from '@phosphor-icons/react/CircleNotch'
+
 import { useNewNote, useNewNoteSteps } from '../_hooks/zustand-store'
 import VoiceRecorder from './components/voice-recorder'
-import { CircleNotch } from '@phosphor-icons/react/CircleNotch'
 import NoteDialog from './note-dialog'
 
 const NewNote = () => {

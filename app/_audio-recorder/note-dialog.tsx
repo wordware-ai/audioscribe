@@ -1,11 +1,13 @@
+import { useMemo, useState } from 'react'
+import { WaveSine } from '@phosphor-icons/react/WaveSine'
+import { format } from 'date-fns/format'
+import { nanoid } from 'nanoid'
+
 import { Markdown } from '@/components/markdown'
 import { AlertDialog, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { WaveSine } from '@phosphor-icons/react/WaveSine'
-import { format } from 'date-fns/format'
-import { nanoid } from 'nanoid'
-import { useMemo, useState } from 'react'
+
 import { useNewNote, useNewNoteSteps, useNotes } from '../_hooks/zustand-store'
 import { lora } from '../fonts'
 

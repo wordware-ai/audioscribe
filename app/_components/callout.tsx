@@ -1,8 +1,9 @@
+import { GithubLogo } from '@phosphor-icons/react/dist/ssr'
+
 import { Button } from '@/components/ui/button'
 import DotPattern from '@/components/ui/dot-pattern'
 import WordwareLogo from '@/components/ui/logo'
 import { cn } from '@/lib/utils'
-import { GithubLogo } from '@phosphor-icons/react/dist/ssr'
 
 const Callout = () => {
   return (
@@ -16,9 +17,8 @@ const Callout = () => {
         <div className="w-full md:w-1/2">
           <h3 className="mb-4 text-2xl">WORDWARE</h3>
           <p className="mb-6 font-thin">
-            It’s a tool (an IDE) that enables you to quickly build custom AI agents for specific use cases like legal, marketing, construction, or even
-            generating a Twitter personality as seen here. We call applications built on Wordware ‘WordApps’ because you can create them using natural
-            language—in other words, using words (pun intended).
+            It’s a tool (an IDE) that enables you to quickly build custom AI agents for specific use cases like legal contract generation, marketing content
+            automation, invoice analysis, candidate screening, generating PRDs, and many more.
           </p>
           <h3 className="mb-4 text-2xl">WHO IS IT FOR</h3>
           <p className="mb-6 font-thin">

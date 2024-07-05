@@ -1,7 +1,10 @@
 'use client'
-import { cn } from '@/lib/utils'
+
 import { ArrowDown } from '@phosphor-icons/react'
 import Masonry from 'react-masonry-css'
+
+import { cn } from '@/lib/utils'
+
 import { useNotes } from '../_hooks/zustand-store'
 import NoteCard from './note-card'
 

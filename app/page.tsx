@@ -1,17 +1,18 @@
+import { Button } from '@/components/ui/button'
 import DotPattern from '@/components/ui/dot-pattern'
+import WordwareLogo from '@/components/ui/logo'
+import { NewsletterForm } from '@/components/ui/newsletter-form'
 import { cn } from '@/lib/utils'
-import DeveloperInfo from './_components/developer-info'
+
 import NewNote from './_audio-recorder/new-note'
 import Callout from './_components/callout'
+import DeveloperInfo from './_components/developer-info'
 import Footer from './_components/footer'
 import Listing from './_components/listing'
 import SeenOn from './_components/seen-on'
 import SocialProof from './_components/social-proof'
 import UseCases from './_components/use-cases'
 import { instrumentSerif } from './fonts'
-import WordwareLogo from '@/components/ui/logo'
-import { NewsletterForm } from '@/components/ui/newsletter-form'
-import { Button } from '@/components/ui/button'
 
 export const maxDuration = 180
 export const dynamic = 'force-dynamic'

@@ -1,7 +1,8 @@
+import React from 'react'
+import { DiscordLogo, Envelope, LinkedinLogo, XLogo } from '@phosphor-icons/react/dist/ssr'
+
 import { Button } from '@/components/ui/button'
 import WordwareLogo from '@/components/ui/logo'
-import { DiscordLogo, Envelope, LinkedinLogo, XLogo } from '@phosphor-icons/react/dist/ssr'
-import React from 'react'
 
 const Footer = () => {
   return (

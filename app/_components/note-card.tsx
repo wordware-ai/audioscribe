@@ -1,14 +1,17 @@
 'use client'
-import { Markdown } from '@/components/markdown'
-import { cn } from '@/lib/utils'
+
+import { useState } from 'react'
 import { ClipboardText, Copy, QuestionMark, X } from '@phosphor-icons/react'
 import { WaveSine } from '@phosphor-icons/react/WaveSine'
 import { format } from 'date-fns/format'
-import { useState } from 'react'
+import { toast } from 'sonner'
+
+import { Markdown } from '@/components/markdown'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+
 import { useNotes } from '../_hooks/zustand-store'
 import { lora } from '../fonts'
-import { toast } from 'sonner'
-import { Button } from '@/components/ui/button'
 
 const NoteCard = ({ id, title, transcript, content, createdAt }: { id: string; title: string; transcript: string; content: string; createdAt: string }) => {
   const [confirmDelete, setConfirmDelete] = useState(false)

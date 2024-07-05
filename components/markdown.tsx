@@ -1,8 +1,9 @@
-import { lora } from '@/app/fonts'
-import { cn } from '@/lib/utils'
 import { FC, memo } from 'react'
 import ReactMarkdown, { Options } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+
+import { lora } from '@/app/fonts'
+import { cn } from '@/lib/utils'
 
 export const MemoizedReactMarkdown: FC<Options> = memo(
   ReactMarkdown,

@@ -1,7 +1,9 @@
+import { Brain, CheckSquare, EnvelopeSimple, Heart, Kanban, Lightbulb, MicrophoneStage, PenNib, ShareNetwork } from '@phosphor-icons/react/dist/ssr'
+
 import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
+
 import { lora } from '../fonts'
-import { Kanban, Brain, EnvelopeSimple, Heart, PenNib, CheckSquare, MicrophoneStage, ShareNetwork, Lightbulb } from '@phosphor-icons/react/dist/ssr'
 
 const useCases = [
   {

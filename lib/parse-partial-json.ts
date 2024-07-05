@@ -1,4 +1,5 @@
 import SecureJSON from 'secure-json-parse'
+
 import { fixJson } from './fix-json'
 
 export function parsePartialJson(jsonText: string | undefined): unknown | undefined {

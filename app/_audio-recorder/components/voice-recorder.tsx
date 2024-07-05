@@ -1,11 +1,12 @@
 'use client'
 
-import RecordButton from './record-button'
-import AudioWaveform from './audio-waveform'
-import AudioPlayer from './audio-player'
-import ErrorAlert from './error-alert'
-import useAudioRecorder from '../hooks/use-recorder'
 import { useNewNoteSteps } from '@/app/_hooks/zustand-store'
+
+import useAudioRecorder from '../hooks/use-recorder'
+import AudioPlayer from './audio-player'
+import AudioWaveform from './audio-waveform'
+import ErrorAlert from './error-alert'
+import RecordButton from './record-button'
 import RecordingControls from './recording-controls'
 
 const VoiceRecorder = () => {

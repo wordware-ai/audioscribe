@@ -1,6 +1,7 @@
+import { ArrowCounterClockwise } from '@phosphor-icons/react'
+
 import { lora } from '@/app/fonts'
 import { cn } from '@/lib/utils'
-import { ArrowCounterClockwise } from '@phosphor-icons/react'
 
 const RecordingControls = ({ recordingTime, onResetRecording }: { recordingTime: number; onResetRecording: () => void }) => {
   const formatTime = (seconds: number) => {

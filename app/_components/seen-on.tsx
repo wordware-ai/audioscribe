@@ -1,7 +1,8 @@
+import Image from 'next/image'
+
+import medium from '@/public/logos/medium.png'
 import x from '@/public/logos/x.png'
 import ycombinator from '@/public/logos/ycombinator.png'
-import medium from '@/public/logos/medium.png'
-import Image from 'next/image'
 
 const logos = [
   {

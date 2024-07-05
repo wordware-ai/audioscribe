@@ -1,7 +1,8 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
+
 import { transcribeWhisper } from '@/app/_actions/actions'
 import { NewNote, useNewNote, useNewNoteSteps } from '@/app/_hooks/zustand-store'
 import { parsePartialJson } from '@/lib/parse-partial-json'
-import { useState, useRef, useCallback, useEffect } from 'react'
 
 const useAudioRecorder = () => {
   const [isRecording, setIsRecording] = useState<boolean>(false)

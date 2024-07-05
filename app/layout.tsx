@@ -1,10 +1,15 @@
+import { Toaster } from 'sonner'
+
 import { TailwindIndicator } from '@/components/ui/tailwind-indicator'
 import { getURL } from '@/lib/config'
-import { Toaster } from 'sonner'
+
 import { poppins } from './fonts'
+
 import './globals.css'
-import siteMetadata from './metadata'
+
 import Providers from '@/lib/providers'
+
+import siteMetadata from './metadata'
 
 export const metadata = {
   metadataBase: new URL(getURL()),

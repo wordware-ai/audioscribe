@@ -1,9 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import robert from '@/public/testimonials/robert.jpeg'
-import kamil from '@/public/testimonials/kamil.png'
-import filip from '@/public/testimonials/filip.jpg'
+
 import { cn } from '@/lib/utils'
+import filip from '@/public/testimonials/filip.jpg'
+import kamil from '@/public/testimonials/kamil.png'
+import robert from '@/public/testimonials/robert.jpeg'
 
 const quotes = [
   {
