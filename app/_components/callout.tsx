@@ -18,7 +18,8 @@ const Callout = () => {
           <h3 className="mb-4 text-2xl">WORDWARE</h3>
           <p className="mb-6 font-thin">
             It’s a tool (an IDE) that enables you to quickly build custom AI agents for specific use cases like legal contract generation, marketing content
-            automation, invoice analysis, candidate screening, generating PRDs, and many more.
+            automation, invoice analysis, candidate screening, generating PRDs, and many more. We call applications built on Wordware ‘WordApps’ because you can
+            create them using natural language—in other words, using words (pun intended).
           </p>
           <h3 className="mb-4 text-2xl">WHO IS IT FOR</h3>
           <p className="mb-6 font-thin">
