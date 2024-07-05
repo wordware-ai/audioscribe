@@ -10,10 +10,10 @@ import { Markdown } from '@/components/markdown'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-import { useNotes } from '../_hooks/zustand-store'
-import { lora } from '../fonts'
+import { Note, useNotes } from '@/app/_hooks/zustand-store'
+import { lora } from '@/app/fonts'
 
-const NoteCard = ({ id, title, transcript, content, createdAt }: { id: string; title: string; transcript: string; content: string; createdAt: string }) => {
+const NoteCard = ({ id, title, transcript, content, createdAt }: Note) => {
   const [confirmDelete, setConfirmDelete] = useState(false)
   const readableDate = format(new Date(createdAt), 'dd MMM yyyy')
 
