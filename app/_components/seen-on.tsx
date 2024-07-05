@@ -23,7 +23,7 @@ const logos = [
 
 const SeenOn = () => {
   return (
-    <div className="flex-center flex-col gap-6">
+    <div className="flex-center flex-col gap-8">
       <div className="flex-center flex-col gap-2">
         <h2 className="text-center text-xs font-bold">As seen on</h2>
         <div className="flex-center flex-rows flex-wrap gap-8 opacity-50 brightness-125 grayscale">

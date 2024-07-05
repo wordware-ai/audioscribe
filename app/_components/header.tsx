@@ -19,7 +19,7 @@ const Header = () => {
           scrambled thoughts.
         </span>
       </h1>
-      <div className="flex-center flex-col gap-2">
+      <div className="flex-center flex-col gap-4">
         <h2 className="flex-center gap-4">
           Built with{' '}
           <a
