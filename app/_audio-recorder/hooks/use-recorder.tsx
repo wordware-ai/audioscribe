@@ -4,22 +4,31 @@ import { transcribeWhisper } from '@/app/_actions/actions'
 import { NewNote, useNewNote, useNewNoteSteps } from '@/app/_hooks/zustand-store'
 import { parsePartialJson } from '@/lib/parse-partial-json'
 
+/**
+ * useAudioRecorder hook provides functionality for recording, processing, and analyzing audio.
+ * It handles the entire lifecycle of recording, including setting up the audio context, media recorder,
+ * and analyser for visualizing the audio waveform. It also processes the recorded audio by uploading
+ * it to a server, transcribing it, and analyzing the transcript.
+ *
+ * @returns An object containing the state of the recording process and functions to control it.
+ */
 const useAudioRecorder = () => {
-  const [isRecording, setIsRecording] = useState<boolean>(false)
-  const [recordingTime, setRecordingTime] = useState(0)
-  const recordingTimerRef = useRef<NodeJS.Timeout | null>(null)
-  const [audioData, setAudioData] = useState<number[]>([])
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
-  const chunksRef = useRef<Blob[]>([])
-  const audioContextRef = useRef<AudioContext | null>(null)
-  const analyserRef = useRef<AnalyserNode | null>(null)
-  const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null)
-  const animationRef = useRef<number | null>(null)
-  const [autoStopTimer, setAutoStopTimer] = useState<number | null>(null)
-  const { setNewNoteSteps, resetNewNoteSteps } = useNewNoteSteps()
-  const { setNewNote, resetNewNote } = useNewNote()
+  const [isRecording, setIsRecording] = useState<boolean>(false) // Indicates if recording is in progress
+  const [recordingTime, setRecordingTime] = useState(0) // Keeps track of the recording time in seconds
+  const recordingTimerRef = useRef<NodeJS.Timeout | null>(null) // Reference to the recording timer
+  const [audioData, setAudioData] = useState<number[]>([]) // Array of audio data for visualization
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null) // Reference to the MediaRecorder instance
+  const chunksRef = useRef<Blob[]>([]) // Array to store the recorded audio chunks
+  const audioContextRef = useRef<AudioContext | null>(null) // Reference to the AudioContext instance
+  const analyserRef = useRef<AnalyserNode | null>(null) // Reference to the AnalyserNode instance
+  const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null) // Reference to the MediaStreamAudioSourceNode instance
+  const animationRef = useRef<number | null>(null) // Reference to the animation frame
+  const [autoStopTimer, setAutoStopTimer] = useState<number | null>(null) // Timer for auto-stopping the recording
+  const { setNewNoteSteps, resetNewNoteSteps } = useNewNoteSteps() // Hook for managing new note steps
+  const { setNewNote, resetNewNote } = useNewNote() // Hook for managing the new note
 
   useEffect(() => {
+    // Cleanup function to stop the recording timer when the component unmounts
     return () => {
       if (recordingTimerRef.current) {
         clearInterval(recordingTimerRef.current)
@@ -27,6 +36,12 @@ const useAudioRecorder = () => {
     }
   }, [])
 
+  /**
+   * Uploads a blob to the server and returns the URL of the uploaded file.
+   *
+   * @param blob The blob to be uploaded.
+   * @returns A promise that resolves to the URL of the uploaded file.
+   */
   const uploadBlob = async (blob: Blob) => {
     try {
       const formData = new FormData()
@@ -42,19 +57,30 @@ const useAudioRecorder = () => {
     }
   }
 
+  /**
+   * Transcribes the audio file using the Replicate API.
+   *
+   * @param audioPublicURL The URL of the audio file to be transcribed.
+   * @returns A promise that resolves to the transcribed text or null if transcription fails.
+   */
   const transcribeAudio = async ({ audioPublicURL }: { audioPublicURL: string }) => {
     if (!audioPublicURL) return null
     const { success, text, error } = await transcribeWhisper({ publicURL: audioPublicURL })
 
     if (success) {
       setNewNoteSteps((state) => ({ ...state, transcript: text }))
-
       return text
     } else {
       console.error('🔴 | transcribeAudioError', error)
     }
   }
 
+  /**
+   * Analyzes the transcript using the Wordware API.
+   *
+   * @param transcript The transcript to be analyzed.
+   * @returns A promise that resolves to the analyzed note.
+   */
   const analyseVoicenote = async ({ transcript }: { transcript: string }) => {
     setNewNoteSteps((state) => ({ ...state, wordwareStarted: true }))
     const response = await fetch('/api/wordware', {
@@ -95,6 +121,9 @@ const useAudioRecorder = () => {
     }
   }
 
+  /**
+   * Processes the recorded audio by uploading, transcribing, and analyzing it.
+   */
   const processRecording = useCallback(async () => {
     // This is the controller that handles all the logic behind creating a new note.
 
@@ -122,6 +151,11 @@ const useAudioRecorder = () => {
     chunksRef.current = []
   }, [setNewNoteSteps])
 
+  /**
+   * Stops the recording process and optionally processes the recording.
+   *
+   * @param shouldProcess If true, the recording will be processed after stopping.
+   */
   const stopRecording = useCallback(
     (shouldProcess: boolean = true) => {
       if (mediaRecorderRef.current && isRecording) {
@@ -149,6 +183,9 @@ const useAudioRecorder = () => {
     [isRecording, processRecording],
   )
 
+  /**
+   * Resets the recording state and cleans up resources.
+   */
   const resetRecording = useCallback(() => {
     stopRecording(false)
     setIsRecording(false)
@@ -177,6 +214,9 @@ const useAudioRecorder = () => {
     resetNewNote()
   }, [resetNewNoteSteps, resetNewNote])
 
+  /**
+   * Starts the recording process.
+   */
   const startRecording = useCallback(async () => {
     try {
       // Request access to the users' mic
