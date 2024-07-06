@@ -38,7 +38,7 @@ const SeenOn = () => {
           ))}
         </div>
       </div>
-      <div className="flex-center gap-2 text-sm">
+      <div className="flex-center flex-col gap-2 text-sm md:flex-row">
         Want to make your own?
         <Button
           size={'xs'}

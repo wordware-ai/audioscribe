@@ -60,13 +60,13 @@ const Callout = () => {
             Duplicate Wordware Project
           </a>
         </Button>
-        {/* https://app.wordware.ai/r/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db */}
+
         <Button
           size={'lg'}
           variant={'secondary'}
           asChild>
           <a
-            href="https://github.com/ky-zo/wordware-audioscribe"
+            href="https://github.com/wordware-ai/audioscribe/"
             target="_blank"
             className="flex-center gap-2">
             <GithubLogo />

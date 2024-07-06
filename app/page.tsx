@@ -22,7 +22,7 @@ export default function Home() {
       <section className="min-h-[70svh] pt-12">
         <Header />
       </section>
-      <section className="pb-12">
+      <section className="pb-12 pt-6 md:pt-0">
         <SeenOn />
       </section>
       <section>
