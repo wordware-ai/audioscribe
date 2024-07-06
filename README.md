@@ -9,6 +9,7 @@ To set up the Audioscribe project on your local machine, follow these steps:
 1. **Clone the Repository**: Clone the Audioscribe repository from GitHub to your local machine using your preferred method (e.g., Git Bash, GitHub Desktop, or the command line).
 2. **Install Dependencies**: Navigate to the project directory and run `npm install` to install all the required dependencies.
 3. **Environment Variables**: Create a `.env` file in the project root directory and add the following environment variables:
+   - `NEXT_PUBLIC_BASE_URL`: The base URL for your application.
    - `BLOB_READ_WRITE_TOKEN`: Your Azure Blob Storage token for read and write operations.
    - `REPLICATE_API_TOKEN`: Your Replicate API token for transcription services.
    - `WORDWARE_API_KEY`: Your Wordware API key for advanced text processing.
