@@ -43,7 +43,7 @@ const Callout = () => {
           </p>
         </div>
       </div>
-      <div className="flex-center gap-2">
+      <div className="flex-center flex-col gap-2 md:flex-row">
         <Button
           size={'lg'}
           variant={'default'}
