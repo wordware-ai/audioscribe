@@ -20,8 +20,6 @@ export async function POST(request: Request) {
   const decoder = new TextDecoder()
   let buffer: string[] = []
   let finalOutput = false
-  let jsonBuffer = ''
-  let isJsonStarted = false
 
   const stream = new ReadableStream({
     async start(controller) {

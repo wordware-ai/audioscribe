@@ -61,7 +61,7 @@ const DeveloperInfo = () => {
         <>
           <Button
             onClick={() => {
-              setNewNoteSteps((prev) => ({
+              setNewNoteSteps(() => ({
                 recorded: true,
                 uploadStarted: true,
                 uploadedURL: 'https://je2yapnzwysjecxl.public.blob.vercel-storage.com/6MO44-hPMRXkTm5qeAH1MUjMD3Xn55OX7yjc.webm',

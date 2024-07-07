@@ -146,7 +146,7 @@ const useAudioRecorder = () => {
     }
 
     //Step 3: Analyse the transcript
-    const newNote = await analyseVoicenote({ transcript })
+    await analyseVoicenote({ transcript })
 
     chunksRef.current = []
   }, [setNewNoteSteps])

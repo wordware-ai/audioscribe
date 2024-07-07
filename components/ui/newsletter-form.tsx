@@ -7,7 +7,7 @@ import { z } from 'zod'
 
 import { createLoopsContact } from '@/app/_actions/actions'
 import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
 const FormSchema = z.object({
@@ -23,7 +23,7 @@ export function NewsletterForm() {
   })
 
   async function onSubmit(values: z.infer<typeof FormSchema>) {
-    const { success, error } = await createLoopsContact({ email: values.email })
+    const { success } = await createLoopsContact({ email: values.email })
     if (!success) {
       toast.error('Something went wrong')
     } else {

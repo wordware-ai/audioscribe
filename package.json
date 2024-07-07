@@ -18,6 +18,7 @@
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-switch": "^1.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@vercel/blob": "^0.23.3",
     "ai": "^3.2.8",
     "class-variance-authority": "^0.7.0",
