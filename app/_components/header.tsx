@@ -5,10 +5,12 @@ import WordwareLogo from '@/components/ui/logo'
 
 import NewNote from '../_audio-recorder/new-note'
 import { instrumentSerif } from '../fonts'
+import PHButton from './PHButton'
 
 const Header = () => {
   return (
     <div className="flex-center flex-grow flex-col gap-6 px-4 pb-6 text-black md:gap-12 md:px-0">
+      <PHButton />
       <h1 className="max-w-lg text-center text-4xl font-bold md:text-5xl">
         Clean notes from
         <br />

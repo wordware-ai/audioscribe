@@ -61,7 +61,7 @@ const Callout = () => {
           </a>
         </Button>
 
-        <Button
+        {/* <Button
           size={'lg'}
           variant={'secondary'}
           asChild>
@@ -72,7 +72,7 @@ const Callout = () => {
             <GithubLogo />
             GitHub Repo
           </a>
-        </Button>
+        </Button> */}
       </div>
 
       <DotPattern className={cn('-z-50 [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]')} />
