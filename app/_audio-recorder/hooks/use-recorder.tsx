@@ -223,12 +223,13 @@ const useAudioRecorder = () => {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       // Create a recorder to record the stream
 
-      const options = {
-        mimeType: 'audio/webm;codecs=opus',
-        bitsPerSecond: 24000, // Set to 24 kbps
-      }
+      // Options are not supported on Safari?
+      // const options = {
+      //   mimeType: 'audio/webm;codecs=opus',
+      //   bitsPerSecond: 24000, // Set to 24 kbps
+      // }
 
-      mediaRecorderRef.current = new MediaRecorder(stream, options)
+      mediaRecorderRef.current = new MediaRecorder(stream)
       audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)()
       analyserRef.current = audioContextRef.current.createAnalyser()
       // Create a MediaStreamAudioSourceNode to connect the audio stream to the AudioContext
@@ -274,7 +275,7 @@ const useAudioRecorder = () => {
     if (isRecording && autoStopTimer === null) {
       const timerId = window.setTimeout(() => {
         stopRecording(true)
-      }, 182000)
+      }, 152000)
       setAutoStopTimer(timerId)
     }
     return () => {
