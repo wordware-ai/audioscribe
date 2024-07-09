@@ -15,7 +15,6 @@ const PHButton = () => {
       const launchTime = new Date('2024-07-10T00:00:00-07:00') // Set to July 10th, 2023 at midnight PST
 
       const diff = launchTime.getTime() - now.getTime()
-      console.log('🟣 | file: PHButton.tsx:17 | timer | diff:', diff)
 
       if (diff <= 0) {
         setCountdown('Launched!')
