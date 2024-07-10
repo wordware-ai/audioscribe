@@ -1,9 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import { Sparkle } from '@phosphor-icons/react'
-
-import { Button } from '@/components/ui/button'
+import { useEffect, useState } from 'react'
 
 const PHButton = () => {
   const [countdown, setCountdown] = useState('')
@@ -12,7 +9,7 @@ const PHButton = () => {
     const timer = setInterval(() => {
       const now = new Date()
 
-      const launchTime = new Date('2024-07-10T00:00:00-07:00') // Set to July 10th, 2023 at midnight PST
+      const launchTime = new Date('2024-07-11T00:00:00-07:00') // Set to July 10th, 2023 at midnight PST
 
       const diff = launchTime.getTime() - now.getTime()
 
@@ -46,9 +43,9 @@ const PHButton = () => {
         />
       </a>
       <div className="text-center text-sm text-[#ff6154]">
-        Launching Open Source code
+        We&apos;re live!
         <br />
-        {countdown && `in ${countdown}`}
+        {countdown && `${countdown}`}
       </div>
     </div>
     // <Button

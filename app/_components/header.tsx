@@ -1,4 +1,5 @@
 import React from 'react'
+import { GithubLogo } from '@phosphor-icons/react/dist/ssr'
 
 import { Button } from '@/components/ui/button'
 import WordwareLogo from '@/components/ui/logo'
@@ -33,22 +34,36 @@ const Header = () => {
             />
           </a>
         </h2>
-        <Button
-          size={'sm'}
-          variant={'outline'}
-          asChild>
-          <a
-            href="https://app.wordware.ai/r/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db"
-            target="_blank"
-            className="flex-center gap-2">
-            <WordwareLogo
-              emblemOnly
-              color={'black'}
-              width={12}
-            />
-            Duplicate this Agent
-          </a>
-        </Button>
+        <div className="flex items-start justify-center gap-2">
+          <Button
+            size={'sm'}
+            variant={'outline'}
+            asChild>
+            <a
+              href="https://app.wordware.ai/r/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db"
+              target="_blank"
+              className="flex-center gap-2">
+              <WordwareLogo
+                emblemOnly
+                color={'black'}
+                width={12}
+              />
+              Duplicate this Agent
+            </a>
+          </Button>
+          <Button
+            size={'sm'}
+            variant={'secondary'}
+            asChild>
+            <a
+              href="https://github.com/wordware-ai/audioscribe/"
+              target="_blank"
+              className="flex-center gap-2">
+              <GithubLogo />
+              GitHub Repo
+            </a>
+          </Button>
+        </div>
       </div>
 
       <p className="max-w-md text-center">Messy mind? Just hit record, spell it all out, and we&apos;ll turn all that into a well structured note.</p>
