@@ -11,7 +11,7 @@ import SeenOn from './_components/seen-on'
 import SocialProof from './_components/social-proof'
 import UseCases from './_components/use-cases'
 
-export const maxDuration = 180
+export const maxDuration = 300
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
