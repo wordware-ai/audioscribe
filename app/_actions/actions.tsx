@@ -39,6 +39,7 @@ type OpenAIWhisperOutput = {
 }
 
 export const transcribeWhisper = async ({ publicURL }: { publicURL: string }) => {
+  console.log('🟣 | file: actions.tsx:42 | transcribeWhisper | publicURL:', publicURL)
   try {
     const output = (await replicate.run('openai/whisper:4d50797290df275329f202e48c76360b3f22b08d28c196cbc54600319435f8d2', {
       input: {
@@ -55,9 +56,11 @@ export const transcribeWhisper = async ({ publicURL }: { publicURL: string }) =>
         temperature_increment_on_fallback: 0.2,
       },
     })) as OpenAIWhisperOutput
+    console.log('🟣 | file: actions.tsx:58 | transcribeWhisper | output:', output)
 
     return { success: true, text: output.transcription }
   } catch (error) {
+    console.log('🟣 | file: actions.tsx:63 | transcribeWhisper | error:', error)
     if (error instanceof Error) {
       return { success: false, text: null, error: error.message }
     }

@@ -64,8 +64,12 @@ const useAudioRecorder = () => {
    * @returns A promise that resolves to the transcribed text or null if transcription fails.
    */
   const transcribeAudio = async ({ audioPublicURL }: { audioPublicURL: string }) => {
+    console.log('🟣 | file: use-recorder.tsx:67 | transcribeAudio | audioPublicURL:', audioPublicURL)
     if (!audioPublicURL) return null
     const { success, text, error } = await transcribeWhisper({ publicURL: audioPublicURL })
+    console.log('🟣 | file: use-recorder.tsx:72 | transcribeAudio | success:', success)
+    console.log('🟣 | file: use-recorder.tsx:73 | transcribeAudio | text:', text)
+    console.log('🟣 | file: use-recorder.tsx:74 | transcribeAudio | error:', error)
 
     if (success) {
       setNewNoteSteps((state) => ({ ...state, transcript: text }))
@@ -139,6 +143,7 @@ const useAudioRecorder = () => {
     // STEP 2: Transcribe the blob using Replicate
     setNewNoteSteps((state) => ({ ...state, uploadedURL: url, transcriptStarted: true }))
     const transcript = await transcribeAudio({ audioPublicURL: url })
+    console.log('🟣 | file: use-recorder.tsx:142 | processRecording | transcript:', transcript)
 
     if (!transcript) {
       setNewNoteSteps((state) => ({ ...state, error: 'Error transcribing audio. Please try again.' }))
@@ -223,13 +228,23 @@ const useAudioRecorder = () => {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       // Create a recorder to record the stream
 
-      // Options are not supported on Safari?
-      // const options = {
-      //   mimeType: 'audio/webm;codecs=opus',
-      //   bitsPerSecond: 24000, // Set to 24 kbps
-      // }
+      //LAST MINUTE CHANGE - Replicate started throwing:
+      //Error: Prediction failed: 'duration'
+      //so I changed the format to mp4.
+      //Seems to be working fine now.
+      const mimeType = MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : 'audio/webm'
 
-      mediaRecorderRef.current = new MediaRecorder(stream)
+      const options = {
+        mimeType,
+
+        //
+        // mimeType: 'audio/webm;codecs=opus',
+
+        // Safari does not seem to support bitsPerSecond
+        // bitsPerSecond: 24000, // Set to 24 kbps
+      }
+
+      mediaRecorderRef.current = new MediaRecorder(stream, options)
       audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)()
       analyserRef.current = audioContextRef.current.createAnalyser()
       // Create a MediaStreamAudioSourceNode to connect the audio stream to the AudioContext
