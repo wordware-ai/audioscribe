@@ -232,7 +232,7 @@ const useAudioRecorder = () => {
       //Error: Prediction failed: 'duration'
       //so I changed the format to mp4.
       //Seems to be working fine now.
-      const mimeType = MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : 'audio/webm'
+      const mimeType = MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : 'audio/webm;codecs=opus'
 
       const options = {
         mimeType,
