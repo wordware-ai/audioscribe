@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@deepgram/sdk": "^3.5.0",
     "@hookform/resolvers": "^3.6.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.3.0",
     "@phosphor-icons/react": "^2.1.6",

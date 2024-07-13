@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { transcribeWhisper } from '@/app/_actions/actions'
+import { transcribeDeepgram, transcribeWhisper } from '@/app/_actions/actions'
 import { NewNote, useNewNote, useNewNoteSteps } from '@/app/_hooks/zustand-store'
 import { parsePartialJson } from '@/lib/parse-partial-json'
 
@@ -66,7 +66,8 @@ const useAudioRecorder = () => {
   const transcribeAudio = async ({ audioPublicURL }: { audioPublicURL: string }) => {
     console.log('🟣 | file: use-recorder.tsx:67 | transcribeAudio | audioPublicURL:', audioPublicURL)
     if (!audioPublicURL) return null
-    const { success, text, error } = await transcribeWhisper({ publicURL: audioPublicURL })
+    // const { success, text, error } = await transcribeWhisper({ publicURL: audioPublicURL })
+    const { success, text, error } = await transcribeDeepgram({ publicURL: audioPublicURL })
     console.log('🟣 | file: use-recorder.tsx:72 | transcribeAudio | success:', success)
     console.log('🟣 | file: use-recorder.tsx:73 | transcribeAudio | text:', text)
     console.log('🟣 | file: use-recorder.tsx:74 | transcribeAudio | error:', error)
