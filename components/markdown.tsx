@@ -15,19 +15,19 @@ export const Markdown: FC<{ content: string }> = ({ content }) => {
       className={cn(lora.className, 'prose-sm break-words prose-p:leading-relaxed prose-pre:p-0')}
       remarkPlugins={[remarkGfm]}
       components={{
-        ul: ({ node, ...props }) => (
+        ul: ({ ...props }) => (
           <ul
             className="mb-1 list-disc last:mb-0"
             {...props}
           />
         ),
-        ol: ({ node, ...props }) => (
+        ol: ({ ...props }) => (
           <ol
             className="mb-1 list-decimal last:mb-0"
             {...props}
           />
         ),
-        li: ({ node, children, ...props }) => (
+        li: ({ children, ...props }) => (
           <li
             className="mb-1 last:mb-0"
             {...props}>
@@ -35,31 +35,31 @@ export const Markdown: FC<{ content: string }> = ({ content }) => {
           </li>
         ),
 
-        h1: ({ node, ...props }) => (
+        h1: ({ ...props }) => (
           <h1
             className="mb-2 mt-1 text-xl font-bold last:mb-0"
             {...props}
           />
         ),
-        h2: ({ node, ...props }) => (
+        h2: ({ ...props }) => (
           <h2
             className="mb-2 mt-1 text-lg font-bold last:mb-0"
             {...props}
           />
         ),
-        h3: ({ node, ...props }) => (
+        h3: ({ ...props }) => (
           <h3
             className="mb-2 mt-1 text-base font-bold last:mb-0"
             {...props}
           />
         ),
-        p: ({ node, ...props }) => (
+        p: ({ ...props }) => (
           <p
             className="mb-2 last:mb-0"
             {...props}
           />
         ),
-        strong: ({ node, ...props }) => (
+        strong: ({ ...props }) => (
           <strong
             className="font-bold"
             {...props}

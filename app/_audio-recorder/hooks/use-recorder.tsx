@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { transcribeDeepgram, transcribeWhisper } from '@/app/_actions/actions'
+import { transcribeDeepgram } from '@/app/_actions/actions'
 import { NewNote, useNewNote, useNewNoteSteps } from '@/app/_hooks/zustand-store'
 import { parsePartialJson } from '@/lib/parse-partial-json'
 
@@ -155,7 +155,7 @@ const useAudioRecorder = () => {
     await analyseVoicenote({ transcript })
 
     chunksRef.current = []
-  }, [setNewNoteSteps])
+  }, [setNewNoteSteps, analyseVoicenote, transcribeAudio, uploadBlob])
 
   /**
    * Stops the recording process and optionally processes the recording.
@@ -218,7 +218,7 @@ const useAudioRecorder = () => {
     }
     resetNewNoteSteps()
     resetNewNote()
-  }, [resetNewNoteSteps, resetNewNote])
+  }, [resetNewNoteSteps, resetNewNote, stopRecording])
 
   /**
    * Starts the recording process.
@@ -285,7 +285,7 @@ const useAudioRecorder = () => {
       setNewNoteSteps((state) => ({ ...state, error: 'Error accessing microphone. Please check permissions.' }))
       console.error('🔴 | Error starting recording:', err)
     }
-  }, [setNewNoteSteps, stopRecording])
+  }, [setNewNoteSteps, processRecording])
 
   useEffect(() => {
     if (isRecording && autoStopTimer === null) {
@@ -299,7 +299,7 @@ const useAudioRecorder = () => {
         clearTimeout(autoStopTimer)
       }
     }
-  }, [isRecording, stopRecording])
+  }, [isRecording, stopRecording, autoStopTimer])
 
   return { isRecording, audioData, startRecording, stopRecording, recordingTime, resetRecording }
 }

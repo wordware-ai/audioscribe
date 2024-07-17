@@ -113,7 +113,7 @@ export const createLoopsContact = async ({ email }: { email: string }) => {
 
   try {
     const response = await fetch('https://app.loops.so/api/v1/contacts/create', options)
-    const data = await response.json()
+    await response.json()
 
     return { success: true }
   } catch (error) {

@@ -42,7 +42,8 @@ const PHButton = () => {
           height="36"
         />
       </a>
-      <div className="text-center text-sm text-[#ff6154]">
+
+      <div className="hidden text-center text-sm text-[#ff6154]">
         We&apos;re live!
         <br />
         {countdown && `${countdown}`}
