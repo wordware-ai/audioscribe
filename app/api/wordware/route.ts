@@ -1,30 +1,30 @@
 export async function POST(request: Request) {
-  const { tweets, profilePicture, profileInfo } = await request.json()
+  const { transcript } = await request.json()
 
   const runResponse = await fetch(`https://app.wordware.ai/api/released-app/${process.env.WORDWARE_PROMPT_ID}/run`, {
     method: 'POST',
+
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.WORDWARE_API_KEY}`,
     },
     body: JSON.stringify({
       inputs: {
-        tweets,
-        profilePicture,
-        profileInfo,
-        version: '^1.1',
+        transcript,
+        version: '^1.0',
       },
     }),
   })
+  console.log('🟣 | file: route.ts:6 | POST | runResponse:', runResponse)
   if (runResponse.status === 401) {
-    return Response.json({ error: 'Wordware API key is invalid' })
+    return Response.json({ error: 'Wordware API key is invalid' }, { status: 401 })
   }
   if (!runResponse.ok) {
-    return Response.json({ error: 'Failed to run prompt' })
+    return Response.json({ error: 'Failed to run prompt' }, { status: runResponse.status })
   }
 
   const reader = runResponse.body?.getReader()
-  if (!reader) return Response.json({ error: 'No reader' })
+  if (!reader) return Response.json({ error: 'No reader' }, { status: 500 })
 
   const decoder = new TextDecoder()
   let buffer: string[] = []

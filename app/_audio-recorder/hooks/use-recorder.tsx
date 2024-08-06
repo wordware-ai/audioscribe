@@ -95,9 +95,11 @@ const useAudioRecorder = () => {
       },
       body: JSON.stringify({ transcript }),
     })
+    console.log('🟣 | file: use-recorder.tsx:133 | analyseVoicenote | response:', response)
 
-    if (!response.body) {
+    if (!response.body || !response.ok) {
       console.error('No response body')
+      setNewNoteSteps((state) => ({ ...state, error: 'Error ' }))
       return
     }
 
