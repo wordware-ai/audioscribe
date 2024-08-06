@@ -1,7 +1,7 @@
 export async function POST(request: Request) {
   const { tweets, profilePicture, profileInfo } = await request.json()
 
-  const runResponse = await fetch('https://app.wordware.ai/api/prompt/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db/run', {
+  const runResponse = await fetch(`https://app.wordware.ai/api/released-app/${process.env.WORDWARE_PROMPT_ID}/run`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
