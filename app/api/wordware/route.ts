@@ -1,5 +1,5 @@
 export async function POST(request: Request) {
-  const { transcript } = await request.json()
+  const { tweets, profilePicture, profileInfo } = await request.json()
 
   const runResponse = await fetch('https://app.wordware.ai/api/prompt/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db/run', {
     method: 'POST',
@@ -9,10 +9,19 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       inputs: {
-        transcript,
+        tweets,
+        profilePicture,
+        profileInfo,
+        version: '^1.1',
       },
     }),
   })
+  if (runResponse.status === 401) {
+    return Response.json({ error: 'Wordware API key is invalid' })
+  }
+  if (!runResponse.ok) {
+    return Response.json({ error: 'Failed to run prompt' })
+  }
 
   const reader = runResponse.body?.getReader()
   if (!reader) return Response.json({ error: 'No reader' })
@@ -33,7 +42,6 @@ export async function POST(request: Request) {
           }
 
           const chunk = decoder.decode(value)
-          console.log('🟣 | file: route.ts:39 | start | chunk:', chunk)
 
           for (let i = 0, len = chunk.length; i < len; ++i) {
             const isChunkSeparator = chunk[i] === '\n'
@@ -47,6 +55,7 @@ export async function POST(request: Request) {
 
             const content = JSON.parse(line)
             const value = content.value
+            console.log('🟣 | file: route.ts:53 | start | value:', value)
 
             if (value.type === 'generation') {
               if (value.state === 'start') {

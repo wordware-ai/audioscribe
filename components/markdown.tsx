@@ -2,8 +2,8 @@ import { FC, memo } from 'react'
 import ReactMarkdown, { Options } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import { lora } from '@/app/fonts'
-import { cn } from '@/lib/utils'
+// import { lora } from '@/app/fonts'
+// import { cn } from '@/lib/utils'
 
 export const MemoizedReactMarkdown: FC<Options> = memo(
   ReactMarkdown,
@@ -12,7 +12,7 @@ export const MemoizedReactMarkdown: FC<Options> = memo(
 export const Markdown: FC<{ content: string }> = ({ content }) => {
   return (
     <MemoizedReactMarkdown
-      className={cn(lora.className, 'prose-sm break-words prose-p:leading-relaxed prose-pre:p-0')}
+      // className={}
       remarkPlugins={[remarkGfm]}
       components={{
         ul: ({ ...props }) => (

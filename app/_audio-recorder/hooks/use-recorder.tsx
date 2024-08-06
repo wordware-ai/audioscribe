@@ -155,7 +155,7 @@ const useAudioRecorder = () => {
     await analyseVoicenote({ transcript })
 
     chunksRef.current = []
-  }, [setNewNoteSteps, analyseVoicenote, transcribeAudio, uploadBlob])
+  }, [setNewNoteSteps])
 
   /**
    * Stops the recording process and optionally processes the recording.
