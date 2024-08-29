@@ -46,7 +46,7 @@ const SeenOn = () => {
           className="px-4"
           asChild>
           <a
-            href="https://app.wordware.ai/r/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db"
+            href="https://app.wordware.ai/copy/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db"
             target="_blank"
             className="flex-center gap-2 px-2 text-sm">
             <WordwareLogo

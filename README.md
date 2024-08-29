@@ -4,7 +4,7 @@
 
 Audioscribe is a web application that converts recordings into structured notes, utilizing Wordware as the AI Agent in the backend. This project leverages cutting-edge technologies to provide users with a seamless experience in recording, transcribing, and managing their notes. 🚀
 
-You can duplicate the AI agent and prompts used in this app by visiting [this Wordware link](https://app.wordware.ai/r/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db).
+You can duplicate the AI agent and prompts used in this app by visiting [this Wordware link](https://app.wordware.ai/copy/a80ab6d8-c7a3-4eee-aaab-10d89cfe53db).
 
 ## Setting Up the Project 🛠️
 
