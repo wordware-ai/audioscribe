@@ -15,7 +15,7 @@ const RecordingControls = ({ recordingTime, onResetRecording }: { recordingTime:
       <button onClick={onResetRecording}>
         <ArrowCounterClockwise color="white" />
       </button>
-      <span className="text-xl">{formatTime(recordingTime)}</span> / 2:30
+      <span className="text-xl">{formatTime(recordingTime)}</span> / 5:00
     </div>
   )
 }
